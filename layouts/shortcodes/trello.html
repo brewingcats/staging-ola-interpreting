@@ -1,0 +1,20 @@
+{{/*< trello "trello_board_id" >*/}}
+{{/*              0             */}}
+<div>
+  <script src="https://trello.com/b/{{.Get 0 }}.js"></script>
+  <script>
+    $('article').css('max-width', '100%');
+  </script>
+</div>
+<script>
+  BrewingCatsCore.Logger.traceInfo(
+    `Trello Component`,
+    'component.trello',
+    'tagId_l',
+    'ComponentSetup',
+    {
+      'component': 'Trello',
+      'boardId': '{{.Get 0 }}'
+    }
+  );
+</script>

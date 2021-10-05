@@ -1,0 +1,340 @@
+
+{{ $lang := (.Get 0) }}
+{{ $copy := cond (eq $lang "en") "Copy" (cond (eq $lang "es") "Copiar" "Copy") }}
+{{ $copied := cond (eq $lang "en") "Copied!" (cond (eq $lang "es") "Copiado!" "Copied!") }}
+{{ $none := cond (eq $lang "en") "none" (cond (eq $lang "es") "vacío" "none") }}
+{{ $parsed := cond (eq $lang "en") "Parsed!" (cond (eq $lang "es") "Analizado!" "Parsed!") }}
+{{ $invalidCode := cond (eq $lang "en") "Invalid Code" (cond (eq $lang "es") "Código Invalido" "Invalid Code") }}
+{{ $sampleViz := "<div id='defaultVizLoaded'></div><div class='tableauPlaceholder' id='viz1599000528258' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ta&#47;TableauDashboardSample&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='TableauDashboardSample&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ta&#47;TableauDashboardSample&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /><param name='filter' value='publish=yes' /></object></div><script type='text/javascript'>var divElement = document.getElementById('viz1599000528258');var vizElement = divElement.getElementsByTagName('object')[0];if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='100%';vizElement.style.height='827px';}var scriptElement = document.createElement('script');scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>" }}
+<script type="text/javascript">
+  function ParseShareCode() {
+    let inputVal = $('#embed-code-input').val();
+
+    // Add telemetry
+    if (inputVal === undefined || inputVal === null || inputVal === "") {
+      ResetValues();
+      BrewingCatsCore.Logger.traceWarn(
+        `Attempted to parse an empty value`,
+        'component.tableauparser',
+        'tagId_o',
+        'ComponentInteraction',
+        {
+          'component': 'tableauparser'
+        }
+      );
+
+      return;
+    }
+
+    if (inputVal.indexOf('1_rss.png') === -1 || inputVal.indexOf("src=") === -1) {
+      console.warn('[1]:Invalid input entered');
+      ResetValues();
+      BrewingCatsCore.Logger.traceWarn(
+        `Unable to find '1_rss.png' or 'src='`,
+        'component.tableauparser',
+        'tagId_p',
+        'ComponentInteraction',
+        {
+          'component': 'tableauparser'
+        }
+      );
+
+      return;
+    }
+
+    let imgSrc = inputVal.split('1_rss.png')[0].split('src=')[1];
+    if (imgSrc === undefined || imgSrc === null || imgSrc === "") {
+      console.warn('[2]:Invalid input entered');
+      ResetValues();
+      BrewingCatsCore.Logger.traceWarn(
+        `Unable to find '1_rss.png' or 'src='`,
+        'component.tableauparser',
+        'tagId_q',
+        'ComponentInteraction',
+        {
+          'component': 'tableauparser'
+        }
+      );
+
+      return;
+    }
+
+    let pathSections = imgSrc.split('&#47;');
+    let worksheetName = pathSections[pathSections.length - 2];
+    let workbookName = pathSections[pathSections.length - 3];
+    let prefixId = pathSections[pathSections.length - 4];
+
+    $("#prefixIdArea").text(prefixId);
+    $("#workbookNameArea").text(workbookName);
+    $("#worksheetNameArea").text(worksheetName);
+
+    $('#vizArea').html(inputVal);
+    let vizId = $('#vizArea').find('.tableauPlaceholder').attr('id');
+    if (vizId === undefined || vizId === null || vizId === "") {
+      console.warn('[0]:Invalid input entered');
+      ResetValues();
+      BrewingCatsCore.Logger.traceWarn(
+        `Unable to find vizArea id`,
+        'component.tableauparser',
+        'tagId_r',
+        'ComponentInteraction',
+        {
+          'component': 'tableauparser'
+        }
+      );
+
+      return;
+    }
+
+    $("#vizIdArea").text(vizId);
+    let shortCode = '{';
+    shortCode += '{';
+    shortCode += '< tableau "' + vizId + '" "' + prefixId + '" "' + workbookName + '" "' + worksheetName + '" >'
+    shortCode += '}}';
+    $('#shortcodeArea').text(shortCode);
+    ShowBtnTooltip(true);
+    BrewingCatsCore.Logger.traceInfo(
+      `Parsing Tableau Share Code`,
+      'component.tableauparser',
+      'tagId_k',
+      'ComponentInteraction',
+      {
+        'component': 'tableauparser',
+        'shortcode': `${shortCode}`
+      }
+    );
+  }
+
+  function ResetValues() {
+    ShowBtnTooltip(false);
+    $('#vizIdArea').text("{{ $none }}");
+    $('#prefixIdArea').text("{{ $none }}");
+    $('#workbookNameArea').text("{{ $none }}");
+    $('#worksheetNameArea').text("{{ $none }}");
+    $('#shortcodeArea').text("{{ $none }}");
+    if ($('#defaultVizLoaded').length === 0) {
+      $('#vizArea').html("{{ $sampleViz }}");
+    }
+  }
+
+  function CopyToClipboard(srcId, destId, tooltipSrc, tooltipMsg) {
+    $('#' + destId).val($('#' + srcId).text());
+    $('#' + destId).css("display", "block");
+    $('#' + destId).select();
+    document.execCommand('copy');
+    $('#' + destId).css("display", "none");
+    let tooltipId = $('#' + tooltipSrc).attr('aria-describedby');
+    $('#' + tooltipId + " div.tooltip-inner").text(tooltipMsg);
+  }
+
+  function ShowBtnTooltip(isSuccessful) {
+    if (isSuccessful === true) {
+      $('#parseButton').tooltip('show');
+      let tooltipId = $('#parseButton').attr('aria-describedby');
+  
+      setTimeout(() => { 
+        $('#parseButton').tooltip('hide');
+      }, 1000);
+    } else {
+      $('#parseButton').tooltip('show');
+      let tooltipId = $('#parseButton').attr('aria-describedby');
+      $('#' + tooltipId + " div.tooltip-inner").text("{{ $invalidCode }}");
+      $('#parseButton').removeClass('btn-primary');
+      $('#parseButton').addClass('btn-danger');
+  
+      setTimeout(() => { 
+        $('#parseButton').tooltip('hide');
+        $('#parseButton').removeClass('btn-danger');
+        $('#parseButton').addClass('btn-primary');
+      }, 1000);
+    }
+  }
+</script>
+
+<label for="embed-code-label" >
+  {{ if eq (.Get 0) "en" }}
+  Enter Embed Code:
+  {{ else if eq (.Get 0) "es" }}
+  Ingresa el código para embeber:
+  {{ end }}
+</label>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="embed-code-label" >
+      {{ if eq (.Get 0) "en" }}
+      Embed Code:
+      {{ else if eq (.Get 0) "es" }}
+      Código para embeber:
+      {{ end }}
+    </span>
+  </div>
+  <input type="text" class="form-control" id="embed-code-input" aria-describedby="embed-code-label"
+    placeholder='{{if eq (.Get 0) "en" }}Paste Code Here{{ else if eq (.Get 0) "es" }}Pega el Código Aquí{{ end }}'>
+  <div class="input-group-append">
+    <button class="btn btn-primary" type="button" onclick="ParseShareCode()" id="parseButton"
+    data-toggle="tooltip" data-placement="right" title="{{ $parsed }}" data-animation="true" data-trigger="manual">
+      {{ if eq (.Get 0) "en" }}
+      Parse
+      {{ else if eq (.Get 0) "es" }}
+      Extraer
+      {{ end }}
+    </button>
+  </div>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="vizId-field">
+      {{ if eq (.Get 0) "en" }}
+      Viz ID:
+      {{ else if eq (.Get 0) "es" }}
+      Identificador del Viz:
+      {{ end }}
+    </span>
+  </div>
+  <label id="instagram-postId-code" class="form-control"><code id="vizIdArea">{{ $none }}</code></label>
+  <div class="input-group-append">
+    <button class="btn btn-dark" type="button" onclick="CopyToClipboard('vizIdArea', 'copyVizIdArea', 'vizIdAreaBtn', '{{ $copied }}')" id="vizIdAreaBtn"
+    data-toggle="tooltip" data-placement="right" title='{{if eq (.Get 0) "en" }}Copy Viz ID{{ else if eq (.Get 0) "es" }}Copiar Identificador de Viz{{ end }}' data-animation="true">
+    {{ $copy }}
+    </button>
+    <input type="text" id="copyVizIdArea" style="display: none;">
+  </div>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="prefixId-field">
+    {{ if eq (.Get 0) "en" }}
+    Prefix ID:
+    {{ else if eq (.Get 0) "es" }}
+    Prefijo:
+    {{ end }}
+    </span>
+  </div>
+  <label id="instagram-postId-code" class="form-control"><code id="prefixIdArea">{{ $none }}</code></label>
+  <div class="input-group-append">
+    <button class="btn btn-dark" type="button" onclick="CopyToClipboard('prefixIdArea', 'copyPrefixIdArea', 'prefixIdAreaBtn', '{{ $copied }}')" id="prefixIdAreaBtn"
+    data-toggle="tooltip" data-placement="right" title='{{if eq (.Get 0) "en" }}Copy Prefix{{ else if eq (.Get 0) "es" }}Copiar Prefijo{{ end }}' data-animation="true">
+    {{ $copy }}
+    </button>
+    <input type="text" id="copyPrefixIdArea" style="display: none;">
+  </div>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="workbookName-field">
+      {{ if eq (.Get 0) "en" }}
+      Workbook Name:
+      {{ else if eq (.Get 0) "es" }}
+      Nombre del Workbook:
+      {{ end }}
+    </span>
+  </div>
+  <label id="instagram-postId-code" class="form-control"><code id="workbookNameArea">{{ $none }}</code></label>
+  <div class="input-group-append">
+    <button class="btn btn-dark" type="button" onclick="CopyToClipboard('workbookNameArea', 'copyWorkbookNameArea', 'workbookNameAreaBtn', '{{ $copied }}')" id="workbookNameAreaBtn"
+    data-toggle="tooltip" data-placement="right" title='{{if eq (.Get 0) "en" }}Copy Workbook Name{{ else if eq (.Get 0) "es" }}Copiar Nombre del Workbook{{ end }}' data-animation="true">
+    {{ $copy }}
+    </button>
+    <input type="text" id="copyWorkbookNameArea" style="display: none;">
+  </div>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="worksheetName-field">
+      {{ if eq (.Get 0) "en" }}
+      Worksheet Name:
+      {{ else if eq (.Get 0) "es" }}
+      Nombre del Worksheet:
+      {{ end }}
+    </span>
+  </div>
+  <label id="instagram-postId-code" class="form-control"><code id="worksheetNameArea">{{ $none }}</code></label>
+  <div class="input-group-append">
+    <button class="btn btn-dark" type="button" onclick="CopyToClipboard('worksheetNameArea', 'copyWorkbookNameArea', 'worksheetNameAreaBtn', '{{ $copied }}')" id="worksheetNameAreaBtn"
+    data-toggle="tooltip" data-placement="right" title='{{if eq (.Get 0) "en" }}Copy Worksheet Name{{ else if eq (.Get 0) "es" }}Copiar Nombre del Worksheet{{ end }}' data-animation="true">
+    {{ $copy }}
+    </button>
+    <input type="text" id="copyWorksheetNameArea" style="display: none;">
+  </div>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="shortCode-field">
+      {{ if eq (.Get 0) "en" }}
+      Resulting ShortCode:
+      {{ else if eq (.Get 0) "es" }}
+      ShortCode Resultante:
+      {{ end }}
+    </span>
+  </div>
+  <label id="instagram-postId-codeUrl" class="form-control"><code id="shortcodeArea">{{ $none }}</code></label>
+  <div class="input-group-append">
+    <button class="btn btn-dark" type="button" onclick="CopyToClipboard('shortcodeArea', 'copyShortcodeArea', 'shortcodeAreaBtn', '{{ $copied }}')" id="shortcodeAreaBtn"
+    data-toggle="tooltip" data-placement="right" title='{{if eq (.Get 0) "en" }}Copy ShortCode Call{{ else if eq (.Get 0) "es" }}Copiar Código del ShortCode{{ end }}' data-animation="true">
+    {{ $copy }}
+    </button>
+    <input type="text" id="copyShortcodeArea" style="display: none;">
+  </div>
+</div>
+<script type="text/javascript">
+
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip({delay: { "show": 200, "hide": 200 }});
+  })
+</script>
+
+{{ if eq (.Get 0) "en" }}
+<p>Resulting embedded Viz:</p>
+{{ else if eq (.Get 0) "es" }}
+<p>Viz Embebida Resultante:</p>
+{{ end }}
+
+<div id="vizArea" >
+  <div id='defaultVizLoaded'></div>
+  <div class='tableauPlaceholder' id='viz1598933558636' style='position: relative'>
+    <noscript>
+      <a href='#'>
+        <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ta&#47;TableauDashboardSample&#47;Dashboard1&#47;1_rss.png' style='border: none' />
+      </a>
+    </noscript>
+    <object class='tableauViz'  style='display:none;'>
+      <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+      <param name='embed_code_version' value='3' /> <param name='site_root' value='' />
+      <param name='name' value='TableauDashboardSample&#47;Dashboard1' />
+      <param name='tabs' value='no' />
+      <param name='toolbar' value='yes' />
+      <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ta&#47;TableauDashboardSample&#47;Dashboard1&#47;1.png' />
+      <param name='animate_transition' value='yes' />
+      <param name='display_static_image' value='yes' />
+      <param name='display_spinner' value='yes' />
+      <param name='display_overlay' value='yes' />
+      <param name='display_count' value='yes' />
+      <param name='language' value='en' />
+      <param name='filter' value='publish=yes' />
+    </object>
+  </div>
+  <script type='text/javascript'>
+    var divElement = document.getElementById('viz1598933558636');
+    var vizElement = divElement.getElementsByTagName('object')[0];
+    if ( divElement.offsetWidth > 800 ) {
+      vizElement.style.width='100%';
+      vizElement.style.height=(divElement.offsetWidth*0.75)+'px';
+    } else if ( divElement.offsetWidth > 500 ) {
+      vizElement.style.width='100%';
+      vizElement.style.height=(divElement.offsetWidth*0.75)+'px';
+    } else { 
+      vizElement.style.width='100%';
+      vizElement.style.height='827px';
+    }
+    
+    var scriptElement = document.createElement('script');
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+    vizElement.parentNode.insertBefore(scriptElement, vizElement);
+  </script>
+</div>
+<br />

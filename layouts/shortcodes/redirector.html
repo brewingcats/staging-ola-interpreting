@@ -1,0 +1,54 @@
+<script type="text/javascript">
+// Get query parameter
+let urlSearcher = new URLSearchParams(window.location.search);
+let source = urlSearcher.get("source");
+if (null !== source && '' !== source) {
+  let reqInfo = {
+    source: source
+  };
+
+  let request = {
+    body: JSON.stringify(reqInfo),
+    method: 'POST',
+    mode: 'cors',
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer',
+    headers: {
+      'Accept': '*/*',
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+      'Origin': window.location.origin
+    }
+  };
+
+  let p = fetch('https://us-central1-brewingcats.cloudfunctions.net/redirect', request).then((response) => {
+    response.json().then((v) => {
+      if (v.destination === '/' || undefined === v.destination) {
+        BrewingCatsCore.Logger.traceWarn(
+          `Redirect not found`,
+          'component.redirector',
+          'tagId_t',
+          'ComponentInteraction',
+          {
+            'component': 'Redirector',
+            'source': source,
+            'destination': '/'
+          });
+      } else {
+        BrewingCatsCore.Logger.traceInfo(
+          `Activating Redirect`,
+          'component.redirector',
+          'tagId_s',
+          'ComponentInteraction',
+          {
+            'component': 'Redirector',
+            'source': source,
+            'destination': v.destination
+          });
+        
+        window.location.replace(v.destination);
+      }
+    });
+  });
+}
+</script>

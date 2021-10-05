@@ -1,0 +1,7 @@
+{{ $src := cond (.IsNamedParams) (.Get "src" ) (.Get 0 ) }}
+{{ $label := cond (.IsNamedParams) (.Get "label" ) (.Get 1 ) }}
+
+<a href="{{ $src }}" target="_blank" onclick="BrewingCatsCore.LinkActions.openLink('{{$src}}', '{{$label}}')" 
+style="color: rgb(34, 34, 34); box-shadow: rgb({{ $.Page.Site.Params.theme_color }}) 0px -4px 0px inset; text-decoration: none; " 
+onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
+onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)">{{ $label }}</a>

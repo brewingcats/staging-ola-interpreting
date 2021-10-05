@@ -1,0 +1,24 @@
+{{/*< teamCard "image" "NightRider" "Xbox" "PSN" "Switch" "Steam" "Twitter" "Instagram" "Website" "ExoPhaseName" "ExoPhaseImg" >*/}}
+{{/*              0        1          2      3       4       5        6          7          8         9              10         */}}
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{.Get 0 }}" class="card-img" alt="{{.Get 1 }}">
+    </div>
+    <div class="col-md-8">
+      <h4 class="card-header"><code>{{.Get 1 }}</code></h4>
+      <div class="card-body">
+        <p class="card-text"><small class="text-muted">
+          Xbox: <a href="http://live.xbox.com/en-US/Profile?gamertag={{.Get 2 }}" target="_blank">{{.Get 2 }}</a><br/>
+          PlayStation: <a href="https://my.playstation.com/profile/{{.Get 3 }}" target="_blank">{{.Get 3 }}</a><br/>
+          Nintendo: <a href="https://nin.codes/{{.Get 4 }}" target="_blank">{{.Get 4 }}</a><br/>
+          Steam: <a href="http://steamcommunity.com/id/{{.Get 5 }}" target="_blank">{{.Get 5 }}</a><br/>
+          <a href="https://twitter.com/{{.Get 6 }}" target="_blank">Twitter</a>, 
+          <a href="https://www.instagram.com/{{.Get 7 }}" target="_blank">Instagram</a>, 
+          <a href="{{.Get 8 }}" target="_blank">Website</a>
+        </small></p>
+      </div>
+    </div>
+  </div>
+  <a href="https://www.exophase.com/user/{{.Get 9 }}/" target="_blank"><img src="{{.Get 10 }}"></a>
+</div>

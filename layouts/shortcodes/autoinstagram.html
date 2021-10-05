@@ -1,0 +1,39 @@
+
+<script type="text/javascript">
+// TODO: Telemetry
+
+//< autoinstagram "fromUrl" "Instagram-Auto-Embed" >
+//< autoinstagram "123qwer" "Instagram-Auto-Embed" >
+
+window.AutoInstagram.Control.Initialize("{{$.Page.Site.Params.fbAppId}}", "{{$.Page.Site.Params.fbTokenId}}");
+
+{{ if eq (.Get 0) "fromUrl" }}
+if (window.AutoInstagram.Control.LoadFromParam() === '') {
+  // Loads error image
+  window.AutoInstagram.Control.QueryAndAddInstagramPost(
+    'CDqPPKxp1cT',
+    {{.Get 1}}
+  );
+} else {
+  window.AutoInstagram.Control.QueryAndAddInstagramPost(
+    window.AutoInstagram.Control.LoadFromParam(),
+    {{.Get 1}}
+  );
+}
+{{ else }}
+window.AutoInstagram.Control.QueryAndAddInstagramPost(
+  ({{.Get 0}}),
+  ({{.Get 1}})
+);
+{{ end }}
+
+BrewingCatsCore.Logger.traceInfo(
+  `AutoInstagram Component`,
+  'component.autoinstagram',
+  'tagId_a',
+  'ComponentSetup',
+  {
+    'component': 'AutoInstagram'
+  }
+);
+</script>

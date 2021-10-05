@@ -1,0 +1,114 @@
+<form>
+  <div class="custom-control custom-radio custom-control-inline">
+    <input type="radio" id="blueStyle-{{.Get 0}}" tagId="blueStyle-{{.Get 0}}" name="alphabetStyle" class="custom-control-input" checked aria-checked="true">
+    <label class="custom-control-label" for="blueStyle-{{.Get 0}}">Blue Style</label>
+  </div>
+  <div class="custom-control custom-radio custom-control-inline">
+    <input type="radio" id="goldenStyle-{{.Get 0}}" tagId="goldenStyle-{{.Get 0}}" name="alphabetStyle" class="custom-control-input">
+    <label class="custom-control-label" for="goldenStyle-{{.Get 0}}">Golden Style</label>
+  </div>
+  <br>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="textMessage">Text to Translate:</span>
+    </div>
+    <input type="text" tagId="transText-{{.Get 0}}" class="form-control" 
+      placeholder="Enter text here" aria-label="Enter text here" aria-describedby="textMessage" onkeypress="handleKey(event, '{{.Get 0}}')">
+    <div class="input-group-append">
+      <button class="btn btn-dark" type="button" onclick="doTranslate('{{.Get 0}}')" id="translateButton-{{.Get 0}}" tagId="translateButton-{{.Get 0}}"
+      data-toggle="tooltip" data-placement="right" title="Translate Text" data-animation="true">Translate</button>
+    </div>
+  </div>
+</form>
+<br>
+<div tagId="messageDisplay-{{.Get 0}}"></div>
+<p>Translation Result:</p>
+<div tagId="transResult-{{.Get 0}}" class="text-center"></div>
+<br>
+
+<script type="text/javascript">
+  function handleKey(e, id) {
+    if(e.keyCode === 13){
+        e.preventDefault(); // Ensure it is only this code that runs
+
+        doTranslate(id);
+    }
+  }
+
+  function doTranslate(id) {
+    let msgArea = $('[tagId="messageDisplay-' + id + '"]');
+    msgArea.html('');
+    let transArea = $('[tagId="transResult-' + id + '"]');
+    transArea.html('');
+    let text = $('[tagId="transText-' + id + '"]').val();
+    if (text === '' || text === null || text === undefined) {
+      msgArea.html('<p class="text-danger">Invalid input text</p>');
+      return;
+    }
+
+    BrewingCatsCore.Logger.traceInfo(
+      `BOTWTranslator Translation: ${text}`,
+      'component.botwtranslator',
+      'tagId_c',
+      'ComponentInteraction',
+      {
+        'component': 'BOTWTranslator',
+        'input': `${text}`
+      }
+    );
+
+    let styleNumber = 1;
+    let style2Radio = $('[tagId="goldenStyle-' + id + '"]');
+    if (style2Radio.is(":checked")) {
+      styleNumber = 2;
+    }
+
+    console.log('Style Number: ' + styleNumber);
+    text = text.toLowerCase();
+    let supportedChars = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','1','2','3','4','5','6','7','8','9','0','-','.','!','?'];
+    let unsupportedFound = [];
+    let imgPath = '/images/content/projects/gaming/botw/alphabet/';
+    let imgs = '';
+    for(let idx in text) {
+      let letter = text[idx]; 
+      if (supportedChars.indexOf(letter) == -1) {
+        console.log('Ignoring unsupported char: "' + letter + '"');
+        unsupportedFound.push(letter);
+      } else {
+        let fileName;
+        switch (letter) {
+          case '-':
+            fileName = 'dash';
+            break;
+          case '.':
+            fileName = 'dot';
+            break;
+          case '!':
+            fileName = 'exclamation';
+            break;
+          case '?':
+            fileName = 'questionmark';
+            break;
+          default:
+            fileName = letter;
+        }
+
+        imgs += '<img src="' + imgPath + fileName + styleNumber + '.PNG" style="width: 40px; height: 40px; display: inline;" alt="' + letter + '">';
+      }
+    }
+    
+    transArea.html(imgs);
+    if (unsupportedFound.length > 0) {
+      msgArea.html('<p class="text-danger">Ignored unsupported characters: "' + unsupportedFound.join('", "') + '"</p>');
+      BrewingCatsCore.Logger.traceWarn(
+        `BOTWTranslator Invalid Chars`,
+        'component.botwtranslator',
+        'tagId_d',
+        'ComponentInteraction',
+        {
+          'invalid': `${unsupportedFound.join('", "')}`
+        }
+      );
+    }
+  }
+</script>

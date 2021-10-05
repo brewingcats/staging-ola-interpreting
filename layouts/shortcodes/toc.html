@@ -1,0 +1,21 @@
+<script>
+  $(document).ready(() => {
+    window.HeadParser.Control.updateHeaders();
+    $('#tocContents')[0].appendChild(window.HeadParser.Control.CreateHeaderList());
+  });
+</script>
+<aside id="toc">
+  <p>
+    <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseToc" aria-expanded="false" aria-controls="collapseToc">
+      {{ if eq (.Get 0) "en" }}
+      <h2>Table of Contents</h2>
+      {{ else if eq (.Get 0) "es" }}
+      <h2>Tabla de Contenidos</h2>
+      {{ end }}
+    </button>
+  </p>
+  <div class="collapse" id="collapseToc">
+    <div class="card card-body" id="tocContents">
+    </div>
+  </div>
+</aside>

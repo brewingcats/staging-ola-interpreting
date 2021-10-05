@@ -1,0 +1,13 @@
+{{ if eq (.Get 0) 1 }}
+<h1 style="text-align: center; color:rgb({{ $.Page.Site.Params.theme_color }});">{{.Get 1}}</h1>
+{{ else if eq (.Get 0) 2}}
+<h2 style="text-align: center; color:rgb({{ $.Page.Site.Params.theme_color }});">{{.Get 1}}</h2>
+{{ else if eq (.Get 0) 3}}
+<h3 style="text-align: center; color:rgb({{ $.Page.Site.Params.theme_color }});">{{.Get 1}}</h3>
+{{ else if eq (.Get 0) 4}}
+<h4 style="text-align: center; color:rgb({{ $.Page.Site.Params.theme_color }});">{{.Get 1}}</h4>
+{{ else if eq (.Get 0) 5}}
+<h5 style="text-align: center; color:rgb({{ $.Page.Site.Params.theme_color }});">{{.Get 1}}</h5>
+{{ else if eq (.Get 0) 6}}
+<h6 style="text-align: center; color:rgb({{ $.Page.Site.Params.theme_color }});">{{.Get 1}}</h6> 
+{{ end }}

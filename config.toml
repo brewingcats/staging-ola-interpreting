@@ -1,0 +1,76 @@
+baseURL = "https://staging.olainterpreting.com/"
+languageCode = "en-us"
+title = "Ola Interpreting"
+theme = "ananke"
+
+MetaDataFormat = "yaml"
+DefaultContentLanguage = "en"
+enableInlineShortcodes = true
+SectionPagesMenu = "main"
+Paginate = 15 # this is set low for demonstrating with dummy content. Set to a higher number
+googleAnalytics = "G-S3E9ER3BFJ"
+enableRobotsTXT = true
+enableEmoji = true
+disqusShortname = ""
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[languages]
+  [languages.en]
+    [languages.en.params]
+      description = "We're here to talk"
+  [languages.es]
+    [languages.es.params]
+      description = "Hablando nos entendemos"
+  [languages.fr]
+    [languages.fr.params]
+      description = "Nous sommes ici pour parler"
+  [languages.ru]
+    [languages.ru.params]
+      description = "Мы здесь, чтобы поговорить"
+  [languages.ko]
+    [languages.ko.params]
+      description = "우리는 이야기를 하러 왔습니다"
+
+[params]
+  googleAnalytics = "G-S3E9ER3BFJ"
+  favicon = "images/favicon.ico"
+  facebook = ""
+  twitter = "https://twitter.com/OIaInterpreting"
+  instagram = "" #"https://www.instagram.com/olainterpreting/"
+  youtube = ""
+  github = ""
+  gitlab = ""
+  linkedin = ""
+  mastodon = ""
+  slack = ""
+  stackoverflow = ""
+  phone = "tel:+1720-704-6170"
+  # choose a background color from any on this page: http://tachyons.io/docs/themes/skins/ and preface it with "bg-"
+  background_color_class = "bg-black"
+  featured_image = "/images/denver1.jpg"
+  recent_posts_number = 15
+  #mainSections = ["software", "uncategorized", "site"]
+  env = "production"
+  theme_color = '0, 165, 203' # #00a5cb
+  #link_hover = '#EFFF00' # yellow
+  #link_hover = '#C00000' # dark red
+  #link_hover = '#DE1F1F' # red#03a9f4
+  link_hover = '#1c579b' # blue
+  #link_hover = '#00802B' # green
+  siteRef = "olainterpreting.com"
+  #fbAppId = "701233337122574"
+  #fbTokenId = "cb323292940db3edd2ab47777543b4f7"
+  telemetryUrl = "https://us-central1-brewingcats.cloudfunctions.net/stagingLogger"
+  #telemetryVizId = "viz1613956602843"
+  #telemetryVizPre = "Br"
+  #telemetryVizName = "BrewingCats-StagingTelemetry"
+  #telemetryVizView = "Analysis"
+  statsUrl = "https://us-central1-brewingcats.cloudfunctions.net/stats"
+  siteEnv = "staging"
+  referral = "https://brewingcats.com"
+  siteVersion = "0.6.22"
+  siteRelease = "Alpha"

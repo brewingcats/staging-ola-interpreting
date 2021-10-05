@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="300" height="60" viewBox="0, 0, 300, 60">
+  <g id="Layer_2">
+    <g>
+      <text transform="matrix(1, 0, 0, 1, 144.919, 28.5)">
+        <tspan x="-109.442" y="16.5" font-family="TimesNewRomanPSMT" font-size="50" fill="#00A5CB">O</tspan>
+        <tspan x="-73.334" y="16.5" font-family="TimesNewRomanPSMT" font-size="31" fill="#00A5CB">la </tspan>
+        <tspan x="-43.212" y="16.5" font-family="TimesNewRomanPSMT" font-size="50" fill="#00A5CB">I</tspan>
+        <tspan x="-26.561" y="16.5" font-family="TimesNewRomanPSMT" font-size="31" fill="#00A5CB">nterpreting</tspan>
+      </text>
+      <text transform="matrix(1, 0, 0, 1, 206.906, 51.874)">
+        <tspan x="-32.096" y="-0.368" font-family="TimesNewRomanPSMT" font-size="8" fill="#00A5CB">…we’re here to talk</tspan>
+      </text>
+      <g>
+        <path d="M219.954,27.091 C214.535,27.091 210.142,24.556 210.142,21.43 C210.142,18.303 214.535,15.769 219.954,15.769 C225.374,15.769 229.767,18.303 229.767,21.43 C229.767,24.556 225.374,27.091 219.954,27.091 z" fill="#00A5CB"/>
+        <path d="M214.996,22.446 C214.443,22.446 213.996,21.991 213.996,21.43 C213.996,20.869 214.443,20.414 214.996,20.414 C215.548,20.414 215.996,20.869 215.996,21.43 C215.996,21.991 215.548,22.446 214.996,22.446 z" fill="#FFFFFF"/>
+        <path d="M219.954,22.446 C219.402,22.446 218.954,21.991 218.954,21.43 C218.954,20.869 219.402,20.414 219.954,20.414 C220.507,20.414 220.954,20.869 220.954,21.43 C220.954,21.991 220.507,22.446 219.954,22.446 z" fill="#FFFFFF"/>
+        <path d="M225.059,22.446 C224.506,22.446 224.059,21.991 224.059,21.43 C224.059,20.869 224.506,20.414 225.059,20.414 C225.611,20.414 226.059,20.869 226.059,21.43 C226.059,21.991 225.611,22.446 225.059,22.446 z" fill="#FFFFFF"/>
+        <path d="M212.679,29.879 L212.914,24.131 L217.312,25.66 z" fill="#00A5CB"/>
+      </g>
+    </g>
+  </g>
+</svg>

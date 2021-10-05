@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="{{ $.Site.LanguageCode | default "en" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    {{/* NOTE: the Site's title, and if there is a page title, that is set too */}}
+    <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+    {{ hugo.Generator }}
+    {{/* NOTE: For Production make sure you add `HUGO_ENV="production"` before your build command */}}
+    {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
+      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    {{ else }}
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    {{ end }}
+
+    {{ partial "site-style.html" . }}
+
+    {{ block "favicon" . }}
+      {{ partialCached "site-favicon.html" . }}
+    {{ end }}
+
+    {{ if .OutputFormats.Get "RSS" }}
+    {{ with .OutputFormats.Get "RSS" }}
+      <link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
+      <link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
+      {{ end }}
+    {{ end }}
+    
+    {{/* NOTE: These Hugo Internal Templates can be found starting at https://github.com/gohugoio/hugo/tree/master/tpl/tplimpl/embedded/templates */}}
+    {{- template "_internal/opengraph.html" . -}}
+    {{- template "_internal/schema.html" . -}}
+    {{- template "_internal/twitter_cards.html" . -}}
+
+    {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
+      {{ template "_internal/google_analytics_async.html" . }}
+    {{ end }}
+    {{ block "head" . }}{{ partial "head-additions.html" . }}{{ end }}
+    <!-- Bootstrap -->
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <!-- jQuery and JS bundle w/ Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    
+    <!-- Share This buttons -->
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5c93159dfeedda0011adad0b&product=inline-share-buttons' async='async'></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleAnalytics }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '{{ .Site.Params.googleAnalytics }}');
+    </script>
+    <!-- Automatic Instagram -->
+    <script type='text/javascript' src="/javascript/autoinstagram.js#{{ .Site.Params.siteVersion }}" ></script>
+    <script type='text/javascript' src="/javascript/headparser.js#{{ .Site.Params.siteVersion }}" ></script>
+    <!-- Brewing Cats Core Libraries -->
+    <script type='text/javascript' src="/javascript/config.js#{{ .Site.Params.siteVersion }}" ></script>
+    <script type='text/javascript' src="/javascript/interfaces.js#{{ .Site.Params.siteVersion }}" ></script>
+    <script type='text/javascript' src="/javascript/util.js#{{ .Site.Params.siteVersion }}" ></script>
+    <script type='text/javascript' src="/javascript/logger.js#{{ .Site.Params.siteVersion }}" ></script>
+    <script type='text/javascript' src="/javascript/gdpr.js#{{ .Site.Params.siteVersion }}" ></script>
+    <script type='text/javascript' src="/javascript/control.js#{{ .Site.Params.siteVersion }}" ></script> 
+  </head>
+
+  <body class="ma0 {{ $.Param "body_classes"  | default "avenir bg-near-white"}}{{ with getenv "HUGO_ENV" }} {{ . }}{{ end }}">
+
+    <script>
+      BrewingCatsCore.Config.TelemetryUrl = '{{ .Site.Params.telemetryUrl }}';
+      BrewingCatsCore.Config.StatsUrl = '{{ .Site.Params.statsUrl }}';
+      BrewingCatsCore.Config.ThemeColor = '{{ $.Page.Site.Params.theme_color }}';
+      BrewingCatsCore.Config.LinkHoverColor = '{{ $.Page.Site.Params.link_hover }}';
+      BrewingCatsCore.Config.UseGenericGdpr = true;
+      // Initialization happens here
+      BrewingCatsCore.Control.Init();
+      let version = '{{ .Site.Params.siteVersion }}';
+      let timeZone = -1 * (new Date().getTimezoneOffset() / 60);
+      let timeZoneMsg = `UTC+${timeZone}`;
+      if (timeZone < 0) {
+        timeZoneMsg = `UTC${timeZone}`;
+      }
+
+      BrewingCatsCore.Logger.traceInfo(
+        `Loading: ${window.location.href}`,
+        'document.body',
+        'tagId_1',
+        'Bootstrap',
+        {
+          'url': window.location.href,
+          'siteVersion': version,
+          'height': $(window).height(),
+          'width': $(window).width(),
+          'timezone': timeZoneMsg
+        }
+      );
+
+      BrewingCatsCore.Control.UpdateStats((stats) => {
+        console.log(stats);
+        $('span[tag-id="site-page-views-footer"]').html(stats.SiteViews);
+        $('button[tag-id="stats-widget-site-views"]').html(stats.SiteViews);
+        $('button[tag-id="stats-widget-page-views"]').html(stats.PageViews);
+        $('button[tag-id="stats-widget-user-site-views"]').html(stats.UserSiteViews);
+        $('button[tag-id="stats-widget-user-page-views"]').html(stats.UserPageViews);
+      });
+    </script>
+    {{ block "header" . }}{{ partial "site-header.html" .}}{{ end }}
+    <main class="pb7" role="main">
+      {{ block "main" . }}{{ end }}
+    </main>
+    <div id="toastArea"></div>
+    {{ if not .Params.barePage }}
+    {{ block "footer" . }}{{ partialCached "site-footer.html" . }}{{ end }}
+    {{ end }}
+  </body>
+</html>

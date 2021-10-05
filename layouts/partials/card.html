@@ -1,0 +1,28 @@
+{{ $featured_image := .Params.featured_image }}
+<div class="col">
+  <div class="card h-100" style="width: 24rem;">
+    {{ if .Params.featured_image }}
+      {{/* Trimming the slash and adding absURL make sure the image works no matter where our site lives */}}
+      {{ $featured_image := (trim $featured_image "/") | absURL }}
+      <a href="{{.Permalink}}" class="db grow">
+        <img src="{{ $featured_image }}" class="card-img-top" alt="image from {{ .Title }}">
+      </a>
+    {{ end }}
+    <div class="card-body">
+      <h5 class="card-title">
+        <a href="{{.Permalink}}" class="color-inherit dim link">
+          {{ .Title }}
+        </a>
+      </h5>
+      <p class="card-text">
+        {{ if .Params.description }}
+        {{ .Params.description }}
+        {{ else }}
+        {{ .Summary | safeHTML | truncate 200 }}
+        {{ end }}
+      </p>
+      <p class="card-text text-right"><small class="text-muted">{{ math.Ceil (div (countwords .Content) 220.0) }} min read</small></p>
+      <a href="{{.Permalink}}" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">{{ $.Param "read_more_copy" | default (i18n "readMore") }}</a>
+    </div>
+  </div>
+</div>

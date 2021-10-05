@@ -1,0 +1,200 @@
+{{ $lang := .Get 0}}
+{{ $parsed := cond (eq $lang "en") "Parsed!" (cond (eq $lang "es") "Analizado!" "Parsed!") }}
+{{ $invalidUrl := cond (eq $lang "en") "Invalid URL" (cond (eq $lang "es") "URL Incorrecta" "Invalid URL") }}
+<script type="text/javascript">
+  function LoadInstagramPost() {
+    let inputVal = $('#instagram-url-input').val();
+    BrewingCatsCore.Logger.traceInfo(
+      `Instaparser Component`,
+      'component.instaparser',
+      'tagId_f',
+      'ComponentInteraction',
+      {
+        'component': 'Instaparser',
+        'input': `${inputVal}`
+      }
+    );
+
+    if (inputVal !== '' && inputVal !== null) {
+      let isValidUrl = validURL(inputVal);
+      if (!isValidUrl) {
+        $('#parseButton').tooltip('show');
+        let tooltipId = $('#parseButton').attr('aria-describedby');
+        $('#' + tooltipId + " div.tooltip-inner").text("{{ $invalidUrl }}");
+        $('#parseButton').removeClass('btn-primary');
+        $('#parseButton').addClass('btn-danger');
+
+        setTimeout(() => { 
+          $('#parseButton').tooltip('hide');
+          $('#parseButton').removeClass('btn-danger');
+          $('#parseButton').addClass('btn-primary');
+        }, 1000);
+      } else {
+        let instaUrl = new  URL(inputVal);
+        if (instaUrl.pathname.startsWith('/p/')) {
+          let segment = instaUrl.pathname.replace('/p/', '').replace('/', '');
+          $('#instagramFragmentCode').text(segment);
+          $('#instagramUrlSearch').text('?insta=' + segment);
+          $('#urlToEmbedLink').attr('href', '/posts/instagram/?insta=' + segment);
+          $('#instagramUrlCode').text(location.origin + '/posts/instagram/?insta=' + segment);
+          let lang = "{{ $lang }}";
+          let tag = '';
+          if (lang === "en") {
+            tag = 'Insta-Auto-Embed-Here';
+          } else if (lang === "es") {
+            tag = 'Instagram-Embebido-Aqui';
+          }
+
+          window.AutoInstagram.Control.QueryAndAddInstagramPost(segment, tag);
+          $('#urlToEmbedLink').tooltip('show');
+          $('#parseButton').tooltip('show');
+          
+          setTimeout(() => { 
+            $('#urlToEmbedLink').tooltip('hide');
+            $('#parseButton').tooltip('hide');
+          }, 1000);
+        } else {
+          // Telemetry
+          $('#parseButton').tooltip('show');
+          let tooltipId = $('#parseButton').attr('aria-describedby');
+          $('#' + tooltipId + " div.tooltip-inner").text("{{ $invalidUrl }}");
+          $('#parseButton').removeClass('btn-primary');
+          $('#parseButton').addClass('btn-danger');
+
+          setTimeout(() => { 
+            $('#parseButton').tooltip('hide');
+            $('#parseButton').removeClass('btn-danger');
+            $('#parseButton').addClass('btn-primary');
+          }, 1000);
+        }
+      }
+    } else {
+      $('#parseButton').tooltip('show');
+      let tooltipId = $('#parseButton').attr('aria-describedby');
+      $('#' + tooltipId + " div.tooltip-inner").text("{{ $invalidUrl }}");
+      $('#parseButton').removeClass('btn-primary');
+      $('#parseButton').addClass('btn-danger');
+
+      setTimeout(() => { 
+        $('#parseButton').tooltip('hide');
+        $('#parseButton').removeClass('btn-danger');
+        $('#parseButton').addClass('btn-primary');
+      }, 1000);
+    }
+  }
+  
+  function CopyPostId() {
+    // Add telemetry
+    let lang = "{{ $lang }}";
+    if (lang === 'en') {
+      lang = 'Copied!';
+    }
+
+    if (lang === 'es') {
+      lang = 'Copiado!'
+    }
+    
+    $('#copyFragmentArea').val($('#instagramUrlSearch').text());
+    $('#copyFragmentArea').css("display", "block");
+    $('#copyFragmentArea').select();
+    document.execCommand('copy');
+    $('#copyFragmentArea').css("display", "none");
+    let tooltipId = $('#copyFragmentButton').attr('aria-describedby');
+    $('#' + tooltipId + " div.tooltip-inner").text(lang);
+  }
+  
+  function CopyUrl() {
+    // Add telemetry
+    let lang = "{{ $lang }}";
+    if (lang === 'en') {
+      lang = 'Copied!';
+    }
+
+    if (lang === 'es') {
+      lang = 'Copiado!'
+    }
+
+    $('#copyUrlArea').val($('#instagramUrlCode').text());
+    $('#copyUrlArea').css("display", "block");
+    $('#copyUrlArea').select();
+    document.execCommand('copy');
+    $('#copyUrlArea').css("display", "none");
+    let tooltipId = $('#copyUrlButton').attr('aria-describedby');
+    $('#' + tooltipId + " div.tooltip-inner").text(lang);
+  }
+
+  function validURL(str) {
+    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+      '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+    return !!pattern.test(str);
+  }
+
+  function Localize() {
+    let lang = "{{ $lang }}";
+    if (lang === "es") {
+      $('#enterInstagramPost').text('Ingrese el URL de la Foto de Instagram:');
+      $('#parseButton').text('Extraer');
+      $('#instagram-postId-field').text('Identificador de Foto de Instagram');
+      $('#instagramFragmentCode').text('ninguno');
+      $('#copyFragmentButton').text('Copiar');
+      $('#copyFragmentButton').attr('title', 'Copiar Fragmento');
+      $('#urlToEmbedLink').text('URL para embeber');
+      $('#urlToEmbedLink').attr('title', 'Actualizado!');
+      $('#instagramUrlCode').text('ninguna');
+      $('#copyUrlButton').text('Copiar');
+      $('#copyUrlButton').attr('title', 'Copiar URL');
+    }
+  }
+</script>
+
+<label for="instagram-url-input" id="enterInstagramPost" >Enter Instagram Post:</label>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="instagram-url-field">URL</span>
+  </div>
+  <input type="text" class="form-control" id="instagram-url-input" aria-describedby="instagram-url-field">
+  <div class="input-group-append">
+    <button class="btn btn-primary" type="button" onclick="LoadInstagramPost()" id="parseButton"
+    data-toggle="tooltip" data-placement="right" title="{{ $parsed }}" data-animation="true" data-trigger="manual">Parse</button>
+  </div>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="instagram-postId-field">Instagram Post ID</span>
+  </div>
+  <label id="instagram-postId-code" class="form-control"><code id="instagramFragmentCode">none</code></label>
+  <div class="input-group-append">
+    <label id="instagram-postId-codeSearch" class="input-group-text"><code id="instagramUrlSearch">?insta=fragment</code></label>
+    <button class="btn btn-dark" type="button" onclick="CopyPostId()" id="copyFragmentButton" 
+    data-toggle="tooltip" data-placement="right" title="Copy Fragment" data-animation="true">Copy</button>
+    <input type="text" id="copyFragmentArea" style="display: none;">
+  </div>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="instagram-embedded-field">
+      <a href="/posts/instagram/" target="_blank" id="urlToEmbedLink"
+      style="color: rgb(34, 34, 34); box-shadow: rgb({{ $.Page.Site.Params.theme_color }}) 0px -4px 0px inset;"
+      data-toggle="tooltip" data-placement="right" title="Updated!" data-animation="true" data-trigger="manual">URL to embed</a>
+    </span>
+  </div>
+  <label id="instagram-postId-codeUrl" class="form-control"><code id="instagramUrlCode">none</code></label>
+  <div class="input-group-append">
+    <button class="btn btn-dark" type="button" onclick="CopyUrl()" id="copyUrlButton" 
+    data-toggle="tooltip" data-placement="right" title="Copy URL" data-animation="true">Copy</button>
+    <input type="text" id="copyUrlArea" style="display: none;">
+  </div>
+</div>
+<script type="text/javascript">
+  Localize();
+
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip({delay: { "show": 200, "hide": 300 }});
+  })
+</script>

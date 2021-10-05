@@ -1,0 +1,32 @@
+{{ $boardId := cond (.IsNamedParams) (.Get "id" ) (.Get 0 ) }}
+{{ if .IsNamedParams }}
+<iframe class="airtable-embed"
+  src="https://airtable.com/embed/{{.Get "id" }}?backgroundColor={{.Get "color" }}}&viewControls=on"
+  frameborder="0"
+  onmousewheel=""
+  width="100%"
+  height="{{ if isset .Params "height" }}{{ .Get "height" }}{{ else }}533{{end}}"
+  style="background: transparent; border: 1px solid #ccc;">
+</iframe>
+{{ else }}
+<iframe class="airtable-embed"
+  src="https://airtable.com/embed/{{.Get 0 }}?backgroundColor={{.Get 1}}&viewControls=on"
+  frameborder="0"
+  onmousewheel=""
+  width="100%"
+  height="{{ if isset .Params 2 }}{{ .Get 2 }}{{ else }}533{{end}}"
+  style="background: transparent; border: 1px solid #ccc;">
+</iframe>
+{{ end }}
+<script>
+  BrewingCatsCore.Logger.traceInfo(
+    `AirTable Component`,
+    'component.airtable',
+    'tagId_10',
+    'ComponentSetup',
+    {
+      'component': 'AirTable',
+      'tableId': '{{ $boardId }}'
+    }
+  );
+</script>

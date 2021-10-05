@@ -1,0 +1,50 @@
+{{/* carousel "en" "My Caption" "photo1" "photo2" "photoN" */}}
+{{ $captionId := replace (replace (.Get 1) " " "") "," "" }}
+{{ $caption := .Get 1 }}
+{{ $numOfParams := len .Params }}
+<div>
+  <div id="{{ $captionId }}" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      {{ range $idx, $item := (seq $numOfParams) }}
+        {{ if ge $idx 2 }}
+        {{ $target := sub $idx 2 }}
+        <button type="button" data-bs-target="#{{ $captionId }}" data-bs-slide-to="{{ $target }}" aria-label="Slide {{ $target }}" class="{{ if gt $target 0 }}{{else}}active{{ end }}"></button>
+        {{ end }}
+      {{ end }}
+    </div>
+    <div class="carousel-inner">
+      {{ range $idx, $item := (seq $numOfParams) }}
+        {{ if and (ge $idx 1) (lt $idx (sub $numOfParams 1)) }}
+        {{- $src := $.Get . }}
+        {{ $target := sub $idx 1 }}
+        <div class="carousel-item {{ if gt $target 0 }}{{else}}active{{ end }}">
+          <img src="{{ $src }}" class="d-block w-100" alt="{{ $caption }}">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>{{ $caption }}</h5>
+          </div>
+        </div>
+        {{ end }}
+      {{ end }}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#{{ $captionId }}" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">{{if .Get 0 | eq "en" }}Previous{{ else }}Anterior{{ end }}</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#{{ $captionId }}" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">{{if .Get 0 | eq "en" }}Next{{ else }}Siguiente{{ end }}</span>
+    </button>
+  </div>
+</div>
+<br>
+<script>
+  BrewingCatsCore.Logger.traceInfo(
+    `Carousel Component`,
+    'component.carousel',
+    'tagId_e',
+    'ComponentSetup',
+    {
+      'component': 'Carousel'
+    }
+  );
+</script>

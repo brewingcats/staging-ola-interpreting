@@ -1,0 +1,24 @@
+{{/*< unsplashembed "Unsplash-code" "800x600" "caption" >*/}}
+<div>
+  <img src="https://source.unsplash.com/{{.Get 0 }}/{{.Get 1 }}" 
+    alt="{{.Get 2 }}"
+    style="
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: min-content;
+      max-height:min-content; ">
+  <p style="text-align: center; font-style: italic;">{{.Get 2}}</p>
+</div>
+<script>
+  BrewingCatsCore.Logger.traceInfo(
+    `Unsplash Component`,
+    'component.unsplash',
+    'tagId_m',
+    'ComponentSetup',
+    {
+      'component': 'Unsplash',
+      'imageId': '{{.Get 0 }}'
+    }
+  );
+</script>

@@ -1,0 +1,19 @@
+{{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
+{{ define "main" }}
+    <article class="center cf pv5 measure-wide-l">
+      <h1>
+        This page does not exist
+      </h1>
+      <img src="/images/notfound.jpg" alt="This page does not exist">
+      <br>
+      Image Credits: 
+      <a href="https://unsplash.com/photos/ZnLprInKM7s?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText&ref={{ $.Page.Site.Params.siteRef }}" target="_blank" 
+      style="color: rgb(34, 34, 34); box-shadow: rgb({{ $.Page.Site.Params.theme_color }}) 0px -4px 0px inset; text-decoration: none; " 
+      onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
+      onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)">Danbo Sad Mood</a> 
+      image by <a href="https://unsplash.com/@mullyadii/?ref={{ $.Page.Site.Params.siteRef }}" target="_blank"
+      style="color: rgb(34, 34, 34); box-shadow: rgb({{ $.Page.Site.Params.theme_color }}) 0px -4px 0px inset; text-decoration: none; " 
+      onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
+      onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)">@mullyadii</a>
+    </article>
+{{ end }}

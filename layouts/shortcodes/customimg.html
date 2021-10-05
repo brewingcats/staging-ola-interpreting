@@ -1,0 +1,15 @@
+{{/*< customimg src="/my/img.jpg" caption="caption" max-width="max-width" max-height="max-height" >*/}}
+<div>
+  <img src="{{.Get "src" }}" 
+    alt="{{.Get "caption" }}"
+    style="
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      {{ if .Get "width" }}width: {{ .Get "width"}};{{ end }}
+      {{ if .Get "max-width" }}max-width: {{ .Get "max-width"}};{{ end }}
+      {{ if .Get "min-width" }}min-width: {{ .Get "min-width"}};{{ end }}">
+  {{ if .Get "caption"}}
+  <p style="text-align: center; font-style: italic;">{{.Get "caption"}}</p>
+  {{ end }}
+</div>
