@@ -1,0 +1,35 @@
+[more]
+other = "더"
+
+[allTitle]
+other = "모두 {{.Title }}"
+
+[recentTitle]
+other = "최근의 {{.Title }}"
+
+[readMore]
+other = "더 읽기"
+
+[whatsInThis]
+other = "이게 뭐야 {{ .Type }}"
+
+[related]
+other = "관련된"
+
+[yourName]
+other = "당신의 이름"
+
+[emailAddress]
+other = "이메일 주소"
+
+[message]
+other = "메세지"
+
+[emailRequiredNote]
+other = "이메일 주소가 필요합니다."
+
+[send]
+other = "보내다"
+
+[taxonomyPageList]
+other = "아래에서 분류 용어를 사용하는 페이지를 찾을 수 있습니다. “{{ .Title }}”"

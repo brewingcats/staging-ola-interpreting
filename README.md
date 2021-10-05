@@ -3,6 +3,7 @@ Home Page for staging.olainterpreting.com
 Pre production version for OlaInterpreting.com website served at staging.olainterpreting.com
 
 ```
+0.9.22 - Added Korean translation
 0.8.22 - Trigger CI deployment
 0.7.22 - GitHub Deployment
 0.6.22 - Minor upgrades
