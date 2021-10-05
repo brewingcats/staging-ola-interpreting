@@ -12,6 +12,7 @@ googleAnalytics = "G-S3E9ER3BFJ"
 enableRobotsTXT = true
 enableEmoji = true
 disqusShortname = ""
+publishDir = "docs"
 
 [sitemap]
   changefreq = "monthly"
@@ -72,5 +73,5 @@ disqusShortname = ""
   statsUrl = "https://us-central1-brewingcats.cloudfunctions.net/stats"
   siteEnv = "staging"
   referral = "https://brewingcats.com"
-  siteVersion = "0.6.22"
+  siteVersion = "0.7.22"
   siteRelease = "Alpha"
