@@ -4,6 +4,7 @@ date: 2021-09-22T17:08:21-07:00
 draft: false
 featured_image: '/images/biomedical.jpg'
 description: Our healthcare services offering
+lang: en
 ---
 
 {{< customimg src="/images/ola.svg" width="50%" >}}
@@ -21,9 +22,8 @@ description: Our healthcare services offering
 - Medical engineering
 - Pediatric medicine
 
-{{< contactbtn email=sales@olainterpreting.com lang=en >}}
+{{< contactbtn email=sales@olainterpreting.com >}}
 
 {{< pageStats >}}
-{{< sharethisbtn >}}
 
-{{< unsplash "en" "y5hQCIn1c6o" "gpiron" "Unsplash: Health & Wellness" >}}
+{{< unsplash "y5hQCIn1c6o" "gpiron" "Unsplash: Health & Wellness" >}}

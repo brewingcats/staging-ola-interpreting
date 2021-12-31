@@ -4,6 +4,7 @@ date: 2021-09-22T17:08:24-07:00
 draft: false
 featured_image: '/images/biomedical.jpg'
 description: Nuestra oferta de servicios médicos
+lang: es
 ---
 
 {{< customimg src="/images/ola.svg" width="50%" >}}
@@ -21,9 +22,8 @@ description: Nuestra oferta de servicios médicos
 - Ingeniería Médica
 - Medicina Pediátrica
 
-{{< contactbtn email=sales@olainterpreting.com lang=es >}}
+{{< contactbtn email=sales@olainterpreting.com >}}
 
 {{< pageStats >}}
-{{< sharethisbtn >}}
 
-{{< unsplash "es" "y5hQCIn1c6o" "gpiron" "Unsplash: Health & Wellness" >}}
+{{< unsplash "y5hQCIn1c6o" "gpiron" "Unsplash: Health & Wellness" >}}

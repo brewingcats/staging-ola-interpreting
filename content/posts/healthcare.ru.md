@@ -4,6 +4,7 @@ date: 2021-09-22T17:08:21-07:00
 draft: false
 featured_image: '/images/biomedical.jpg'
 description: Предлагаемые нами медицинские услуги
+lang: ru
 ---
 
 {{< customimg src="/images/ola.svg" width="50%" >}}
@@ -21,9 +22,8 @@ description: Предлагаемые нами медицинские услуг
 - Медицинская инженерия
 - Педиатрическая медицина
 
-{{< contactbtn email=sales@olainterpreting.com lang=ru >}}
+{{< contactbtn email=sales@olainterpreting.com >}}
 
 {{< pageStats >}}
-{{< sharethisbtn >}}
 
-{{< unsplash "ru" "y5hQCIn1c6o" "gpiron" "Unsplash: Health & Wellness" >}}
+{{< unsplash "y5hQCIn1c6o" "gpiron" "Unsplash: Health & Wellness" >}}

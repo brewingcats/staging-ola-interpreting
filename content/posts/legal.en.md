@@ -4,6 +4,7 @@ date: 2021-09-21T21:25:07-07:00
 draft: false
 featured_image: '/images/capitol.jpg'
 description: Our legal services offering
+lang: en
 ---
 
 {{< customimg src="/images/ola.svg" width="50%" >}}
@@ -20,9 +21,8 @@ description: Our legal services offering
 - Settlement Documents
 - Workers Compensation Law
 
-{{< contactbtn email=sales@olainterpreting.com lang=en >}}
+{{< contactbtn email=sales@olainterpreting.com >}}
 
 {{< pageStats >}}
-{{< sharethisbtn >}}
 
-{{< unsplash "en" "og6WD8sDkOM" "onthesearchforpineapples" "Unsplash: Denver Capitol" >}}
+{{< unsplash "og6WD8sDkOM" "onthesearchforpineapples" "Unsplash: Denver Capitol" >}}

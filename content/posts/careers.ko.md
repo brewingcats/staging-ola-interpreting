@@ -4,6 +4,7 @@ date: 2021-09-19T22:10:34-07:00
 draft: false
 featured_image: '/images/careers.jpg'
 description: 우리 팀의 일원이 되십시오!
+lang: ko
 ---
 
 {{< customimg src="/images/ola.svg" width="75%" >}}
@@ -14,9 +15,8 @@ description: 우리 팀의 일원이 되십시오!
 {{< break >}}
 - 공인 통역사
 
-{{< contactbtn email=careers@olainterpreting.com lang=ko >}}
+{{< contactbtn email=careers@olainterpreting.com >}}
 
 {{< pageStats >}}
-{{< sharethisbtn >}}
 
-{{< unsplash "ko" "zeH-ljawHtg" "giamboscaro" "Unsplash: Editorial, Arts & Culture, History" >}}
+{{< unsplash "zeH-ljawHtg" "giamboscaro" "Unsplash: Editorial, Arts & Culture, History" >}}

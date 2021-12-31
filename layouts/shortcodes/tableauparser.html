@@ -1,5 +1,5 @@
 
-{{ $lang := (.Get 0) }}
+{{ $lang := .Page.Params.lang }}
 {{ $copy := cond (eq $lang "en") "Copy" (cond (eq $lang "es") "Copiar" "Copy") }}
 {{ $copied := cond (eq $lang "en") "Copied!" (cond (eq $lang "es") "Copiado!" "Copied!") }}
 {{ $none := cond (eq $lang "en") "none" (cond (eq $lang "es") "vacío" "none") }}
@@ -152,30 +152,30 @@
 </script>
 
 <label for="embed-code-label" >
-  {{ if eq (.Get 0) "en" }}
+  {{ if eq $lang "en" }}
   Enter Embed Code:
-  {{ else if eq (.Get 0) "es" }}
+  {{ else if eq $lang "es" }}
   Ingresa el código para embeber:
   {{ end }}
 </label>
 <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="embed-code-label" >
-      {{ if eq (.Get 0) "en" }}
+      {{ if eq $lang "en" }}
       Embed Code:
-      {{ else if eq (.Get 0) "es" }}
+      {{ else if eq $lang "es" }}
       Código para embeber:
       {{ end }}
     </span>
   </div>
   <input type="text" class="form-control" id="embed-code-input" aria-describedby="embed-code-label"
-    placeholder='{{if eq (.Get 0) "en" }}Paste Code Here{{ else if eq (.Get 0) "es" }}Pega el Código Aquí{{ end }}'>
+    placeholder='{{if eq $lang "en" }}Paste Code Here{{ else if eq $lang "es" }}Pega el Código Aquí{{ end }}'>
   <div class="input-group-append">
     <button class="btn btn-primary" type="button" onclick="ParseShareCode()" id="parseButton"
     data-toggle="tooltip" data-placement="right" title="{{ $parsed }}" data-animation="true" data-trigger="manual">
-      {{ if eq (.Get 0) "en" }}
+      {{ if eq $lang "en" }}
       Parse
-      {{ else if eq (.Get 0) "es" }}
+      {{ else if eq $lang "es" }}
       Extraer
       {{ end }}
     </button>
@@ -185,9 +185,9 @@
 <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="vizId-field">
-      {{ if eq (.Get 0) "en" }}
+      {{ if eq $lang "en" }}
       Viz ID:
-      {{ else if eq (.Get 0) "es" }}
+      {{ else if eq $lang "es" }}
       Identificador del Viz:
       {{ end }}
     </span>
@@ -195,7 +195,7 @@
   <label id="instagram-postId-code" class="form-control"><code id="vizIdArea">{{ $none }}</code></label>
   <div class="input-group-append">
     <button class="btn btn-dark" type="button" onclick="CopyToClipboard('vizIdArea', 'copyVizIdArea', 'vizIdAreaBtn', '{{ $copied }}')" id="vizIdAreaBtn"
-    data-toggle="tooltip" data-placement="right" title='{{if eq (.Get 0) "en" }}Copy Viz ID{{ else if eq (.Get 0) "es" }}Copiar Identificador de Viz{{ end }}' data-animation="true">
+    data-toggle="tooltip" data-placement="right" title='{{if eq $lang "en" }}Copy Viz ID{{ else if eq $lang "es" }}Copiar Identificador de Viz{{ end }}' data-animation="true">
     {{ $copy }}
     </button>
     <input type="text" id="copyVizIdArea" style="display: none;">
@@ -205,9 +205,9 @@
 <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="prefixId-field">
-    {{ if eq (.Get 0) "en" }}
+    {{ if eq $lang "en" }}
     Prefix ID:
-    {{ else if eq (.Get 0) "es" }}
+    {{ else if eq $lang "es" }}
     Prefijo:
     {{ end }}
     </span>
@@ -215,7 +215,7 @@
   <label id="instagram-postId-code" class="form-control"><code id="prefixIdArea">{{ $none }}</code></label>
   <div class="input-group-append">
     <button class="btn btn-dark" type="button" onclick="CopyToClipboard('prefixIdArea', 'copyPrefixIdArea', 'prefixIdAreaBtn', '{{ $copied }}')" id="prefixIdAreaBtn"
-    data-toggle="tooltip" data-placement="right" title='{{if eq (.Get 0) "en" }}Copy Prefix{{ else if eq (.Get 0) "es" }}Copiar Prefijo{{ end }}' data-animation="true">
+    data-toggle="tooltip" data-placement="right" title='{{if eq $lang "en" }}Copy Prefix{{ else if eq $lang "es" }}Copiar Prefijo{{ end }}' data-animation="true">
     {{ $copy }}
     </button>
     <input type="text" id="copyPrefixIdArea" style="display: none;">
@@ -225,9 +225,9 @@
 <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="workbookName-field">
-      {{ if eq (.Get 0) "en" }}
+      {{ if eq $lang "en" }}
       Workbook Name:
-      {{ else if eq (.Get 0) "es" }}
+      {{ else if eq $lang "es" }}
       Nombre del Workbook:
       {{ end }}
     </span>
@@ -235,7 +235,7 @@
   <label id="instagram-postId-code" class="form-control"><code id="workbookNameArea">{{ $none }}</code></label>
   <div class="input-group-append">
     <button class="btn btn-dark" type="button" onclick="CopyToClipboard('workbookNameArea', 'copyWorkbookNameArea', 'workbookNameAreaBtn', '{{ $copied }}')" id="workbookNameAreaBtn"
-    data-toggle="tooltip" data-placement="right" title='{{if eq (.Get 0) "en" }}Copy Workbook Name{{ else if eq (.Get 0) "es" }}Copiar Nombre del Workbook{{ end }}' data-animation="true">
+    data-toggle="tooltip" data-placement="right" title='{{if eq $lang "en" }}Copy Workbook Name{{ else if eq $lang "es" }}Copiar Nombre del Workbook{{ end }}' data-animation="true">
     {{ $copy }}
     </button>
     <input type="text" id="copyWorkbookNameArea" style="display: none;">
@@ -245,9 +245,9 @@
 <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="worksheetName-field">
-      {{ if eq (.Get 0) "en" }}
+      {{ if eq $lang "en" }}
       Worksheet Name:
-      {{ else if eq (.Get 0) "es" }}
+      {{ else if eq $lang "es" }}
       Nombre del Worksheet:
       {{ end }}
     </span>
@@ -255,7 +255,7 @@
   <label id="instagram-postId-code" class="form-control"><code id="worksheetNameArea">{{ $none }}</code></label>
   <div class="input-group-append">
     <button class="btn btn-dark" type="button" onclick="CopyToClipboard('worksheetNameArea', 'copyWorkbookNameArea', 'worksheetNameAreaBtn', '{{ $copied }}')" id="worksheetNameAreaBtn"
-    data-toggle="tooltip" data-placement="right" title='{{if eq (.Get 0) "en" }}Copy Worksheet Name{{ else if eq (.Get 0) "es" }}Copiar Nombre del Worksheet{{ end }}' data-animation="true">
+    data-toggle="tooltip" data-placement="right" title='{{if eq $lang "en" }}Copy Worksheet Name{{ else if eq $lang "es" }}Copiar Nombre del Worksheet{{ end }}' data-animation="true">
     {{ $copy }}
     </button>
     <input type="text" id="copyWorksheetNameArea" style="display: none;">
@@ -265,9 +265,9 @@
 <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="shortCode-field">
-      {{ if eq (.Get 0) "en" }}
+      {{ if eq $lang "en" }}
       Resulting ShortCode:
-      {{ else if eq (.Get 0) "es" }}
+      {{ else if eq $lang "es" }}
       ShortCode Resultante:
       {{ end }}
     </span>
@@ -275,7 +275,7 @@
   <label id="instagram-postId-codeUrl" class="form-control"><code id="shortcodeArea">{{ $none }}</code></label>
   <div class="input-group-append">
     <button class="btn btn-dark" type="button" onclick="CopyToClipboard('shortcodeArea', 'copyShortcodeArea', 'shortcodeAreaBtn', '{{ $copied }}')" id="shortcodeAreaBtn"
-    data-toggle="tooltip" data-placement="right" title='{{if eq (.Get 0) "en" }}Copy ShortCode Call{{ else if eq (.Get 0) "es" }}Copiar Código del ShortCode{{ end }}' data-animation="true">
+    data-toggle="tooltip" data-placement="right" title='{{if eq $lang "en" }}Copy ShortCode Call{{ else if eq $lang "es" }}Copiar Código del ShortCode{{ end }}' data-animation="true">
     {{ $copy }}
     </button>
     <input type="text" id="copyShortcodeArea" style="display: none;">
@@ -288,9 +288,9 @@
   })
 </script>
 
-{{ if eq (.Get 0) "en" }}
+{{ if eq $lang "en" }}
 <p>Resulting embedded Viz:</p>
-{{ else if eq (.Get 0) "es" }}
+{{ else if eq $lang "es" }}
 <p>Viz Embebida Resultante:</p>
 {{ end }}
 

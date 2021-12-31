@@ -12,14 +12,22 @@
       return;
     }
 
-    // TODO: Telemetry
     let styleNumber = 1;
     if (urlParams.has('style')) {
       let style2Param = urlParams.get('style');
       if (style2Param == '2') {
         styleNumber = 2;
       } else {
-        // TODO: Telemetry this
+        BrewingCatsCore.Logger.traceInfo(
+          `BOTWBare Component`,
+          'component.botwbare',
+          'tagId_a',
+          'Invalid style from URL',
+          {
+            'component': 'BOTWBare',
+            'style': style2Param
+          }
+        );
       }
     }
   
@@ -60,15 +68,16 @@
     }
 
     transArea.html(imgs);
+    BrewingCatsCore.Logger.traceInfo(
+      `BOTWBare Component`,
+      'component.botwbare',
+      'tagId_b',
+      'ComponentSetup',
+      {
+        'component': 'BOTWBare',
+        'style': ''
+      }
+    );
   });
 
-  BrewingCatsCore.Logger.traceInfo(
-    `BOTWBare Component`,
-    'component.botwbare',
-    'tagId_b',
-    'ComponentSetup',
-    {
-      'component': 'BOTWBare'
-    }
-  );
 </script>

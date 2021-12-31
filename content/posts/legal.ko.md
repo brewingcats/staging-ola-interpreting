@@ -4,6 +4,7 @@ date: 2021-09-21T21:25:07-07:00
 draft: false
 featured_image: '/images/capitol.jpg'
 description: 당사의 법률 서비스 제공
+lang: ko
 ---
 
 {{< customimg src="/images/ola.svg" width="50%" >}}
@@ -20,9 +21,8 @@ description: 당사의 법률 서비스 제공
 - 정산 문서
 - 근로자 보상법
 
-{{< contactbtn email=sales@olainterpreting.com lang=ko >}}
+{{< contactbtn email=sales@olainterpreting.com >}}
 
 {{< pageStats >}}
-{{< sharethisbtn >}}
 
-{{< unsplash "ko" "og6WD8sDkOM" "onthesearchforpineapples" "Unsplash: Denver Capitol" >}}
+{{< unsplash "og6WD8sDkOM" "onthesearchforpineapples" "Unsplash: Denver Capitol" >}}

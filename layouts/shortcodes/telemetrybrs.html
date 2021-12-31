@@ -1,14 +1,15 @@
+{{ $lang := .Page.Params.lang }}
 <div class="custom-control custom-switch">
   <input type="checkbox" class="custom-control-input" id="disableTelemetry" onclick="handleTelemetrySwitch()">
   <label class="custom-control-label" for="disableTelemetry">
-    {{if .Get 0 | eq "en" }}
+    {{if $lang | eq "en" }}
     Current Telemetry is: <code tag-id="telemetryStatusLabel-en">Enabled</code>
     {{ else }}
-    Actualmente la recolección de telemetría se encuentra: <code tag-id="telemetryStatusLabel-es">Habilitada</code>
+    La recolección de telemetría se encuentra: <code tag-id="telemetryStatusLabel-es">Habilitada</code>
     {{ end }}</label>
 </div>
 <script>
-  let lang = "{{.Get 0 }}";
+  let lang = "{{ $lang }}";
   let labelSelector = `code[tag-id="telemetryStatusLabel-${lang}"]`;
   let disabledTelemetry = window.localStorage.getItem('DisabledTelemetry');
   if ('true' === disabledTelemetry) {
@@ -28,7 +29,7 @@
   }
 
   function handleTelemetrySwitch() {
-    let lang = "{{.Get 0 }}";
+    let lang = "$lang";
     let labelSelector = `code[tag-id="telemetryStatusLabel-${lang}"]`;
     let enableTelemetry = $('#disableTelemetry').prop('checked');
     if (true === enableTelemetry) {

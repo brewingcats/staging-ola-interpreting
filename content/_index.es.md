@@ -2,6 +2,7 @@
 title: "Ola Interpreting"
 date: 2020-05-17T18:50:41-07:00
 draft: false
+lang: es
 ---
 
 {{< customimg src="/images/ola.svg" width="100%" >}}
@@ -13,6 +14,6 @@ draft: false
 
 **Contamos con intérpretes: Certificados. Acreditados. Con Experiencia. Profesionales**
 
-{{< contactbtn email=sales@olainterpreting.com lang=es >}}
+{{< contactbtn email=sales@olainterpreting.com >}}
 
 {{< statsandsocialfooter >}}

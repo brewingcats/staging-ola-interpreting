@@ -1,0 +1,14 @@
+{{ $color := "currentColor" }}
+{{ $name := .Get 0 }}
+{{ $val := .Get 1 }}
+{{ with $val }}
+  {{if eq $val "currentColor" }}
+    {{ partial "bicon.html" (dict "name" $name "color" $color ) }}
+  {{ else if eq $val "themeColor" }}
+    {{ $color := replace "rgba(#)" "#" $.Page.Site.Params.theme_color }}
+    {{ partial "bicon.html" (dict "name" $name "color" $color ) }}
+  {{ else }}
+    {{ $color := $val }}
+    {{ partial "bicon.html" (dict "name" $name "color" $color ) }}
+  {{ end }}
+{{ end }}

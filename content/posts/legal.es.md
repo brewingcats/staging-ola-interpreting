@@ -4,6 +4,7 @@ date: 2021-09-21T21:25:28-07:00
 draft: false
 featured_image: '/images/capitol.jpg'
 description: Nuestra oferta de servicios legales
+lang: es
 ---
 
 {{< customimg src="/images/ola.svg" width="50%" >}}
@@ -20,9 +21,8 @@ description: Nuestra oferta de servicios legales
 - Documentos de Acuerdos Legales
 - Ley de Compensación al Trabajador
 
-{{< contactbtn email=sales@olainterpreting.com lang=es >}}
+{{< contactbtn email=sales@olainterpreting.com >}}
 
 {{< pageStats >}}
-{{< sharethisbtn >}}
 
-{{< unsplash "es" "og6WD8sDkOM" "onthesearchforpineapples" "Unsplash: Capitolio de Denver" >}}
+{{< unsplash "og6WD8sDkOM" "onthesearchforpineapples" "Unsplash: Capitolio de Denver" >}}

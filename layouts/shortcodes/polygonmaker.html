@@ -1,4 +1,4 @@
-{{ $lang := .Get 1 }}
+{{ $lang := .Page.Params.lang }}
 {{ $imglbl := cond (eq $lang "en") "Image:" "Imágen:" }}
 {{ $loadlbl := cond (eq $lang "en") "Load" "Cargar" }}
 {{ $keeplastlbl := cond (eq $lang "en") "Keep Last Used Tag" "Mantener Última Etiqueta" }}

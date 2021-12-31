@@ -4,6 +4,7 @@ date: 2021-09-21T21:25:07-07:00
 draft: false
 featured_image: '/images/capitol.jpg'
 description: Notre offre de services juridiques
+lang: fr
 ---
 
 {{< customimg src="/images/ola.svg" width="50%" >}}
@@ -20,9 +21,8 @@ description: Notre offre de services juridiques
 - Documents de règlement
 - Loi sur l'indemnisation des travailleurs
 
-{{< contactbtn email=sales@olainterpreting.com lang=fr >}}
+{{< contactbtn email=sales@olainterpreting.com >}}
 
 {{< pageStats >}}
-{{< sharethisbtn >}}
 
-{{< unsplash "fr" "og6WD8sDkOM" "onthesearchforpineapples" "Unsplash: Capitole de Denver" >}}
+{{< unsplash "og6WD8sDkOM" "onthesearchforpineapples" "Unsplash: Capitole de Denver" >}}

@@ -4,6 +4,7 @@ date: 2021-09-22T17:08:21-07:00
 draft: false
 featured_image: '/images/biomedical.jpg'
 description: 우리의 의료 서비스 제공
+lang: ko
 ---
 
 {{< customimg src="/images/ola.svg" width="50%" >}}
@@ -21,9 +22,8 @@ description: 우리의 의료 서비스 제공
 - 의료 공학
 - 소아과
 
-{{< contactbtn email=sales@olainterpreting.com lang=ko >}}
+{{< contactbtn email=sales@olainterpreting.com >}}
 
 {{< pageStats >}}
-{{< sharethisbtn >}}
 
-{{< unsplash "ko" "y5hQCIn1c6o" "gpiron" "Unsplash: Health & Wellness" >}}
+{{< unsplash "y5hQCIn1c6o" "gpiron" "Unsplash: Health & Wellness" >}}

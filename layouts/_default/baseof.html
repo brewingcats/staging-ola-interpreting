@@ -45,8 +45,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     
-    <!-- Share This buttons -->
-    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5c93159dfeedda0011adad0b&product=inline-share-buttons' async='async'></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleAnalytics }}"></script>
     <script>
@@ -75,7 +73,7 @@
       BrewingCatsCore.Config.StatsUrl = '{{ .Site.Params.statsUrl }}';
       BrewingCatsCore.Config.ThemeColor = '{{ $.Page.Site.Params.theme_color }}';
       BrewingCatsCore.Config.LinkHoverColor = '{{ $.Page.Site.Params.link_hover }}';
-      BrewingCatsCore.Config.UseGenericGdpr = true;
+      BrewingCatsCore.Config.UseGenericGdpr = '{{ $.Page.Site.Params.useGenericGdpr }}' === 'true';
       // Initialization happens here
       BrewingCatsCore.Control.Init();
       let version = '{{ .Site.Params.siteVersion }}';

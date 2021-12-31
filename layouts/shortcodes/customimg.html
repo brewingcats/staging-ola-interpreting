@@ -6,10 +6,7 @@
       display: block;
       margin-left: auto;
       margin-right: auto;
-      {{ if .Get "width" }}width: {{ .Get "width"}};{{ end }}
-      {{ if .Get "max-width" }}max-width: {{ .Get "max-width"}};{{ end }}
-      {{ if .Get "min-width" }}min-width: {{ .Get "min-width"}};{{ end }}">
-  {{ if .Get "caption"}}
+      max-width:{{ if .Get "max-width" }}{{ .Get "max-width"}}{{ else }}min-content{{ end }};
+      max-height:{{ if .Get "max-height" }}{{ .Get "max-height"}}{{ else }}min-content{{ end }}; ">
   <p style="text-align: center; font-style: italic;">{{.Get "caption"}}</p>
-  {{ end }}
 </div>

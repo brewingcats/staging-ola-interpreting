@@ -1,3 +1,4 @@
+{{ $lang := .Page.Params.lang }}
 <script>
   $(document).ready(() => {
     window.HeadParser.Control.updateHeaders();
@@ -7,9 +8,9 @@
 <aside id="toc">
   <p>
     <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseToc" aria-expanded="false" aria-controls="collapseToc">
-      {{ if eq (.Get 0) "en" }}
+      {{ if eq $lang "en" }}
       <h2>Table of Contents</h2>
-      {{ else if eq (.Get 0) "es" }}
+      {{ else if eq $lang "es" }}
       <h2>Tabla de Contenidos</h2>
       {{ end }}
     </button>

@@ -107,6 +107,10 @@ To enable comments, add following to your config file:
 
 For any page or post you can add a featured image by including the local path in front matter (see content in the `exampleSite/content/_readme.md` file for examples): `featured_image: '/images/gohugo-default-sample-hero-image.jpg'`
 
+#### Featured image as Page Resources
+If user is using [Page Resources](https://gohugo.io/content-management/page-resources/), the theme will try and match the `featured_image` from with a page resource of type `image` and use its relative permalink. If no `featured_image` is set, the theme will look for a Page Resource of type `image` whose filepath incudes either `cover` or `feature` 
+
+#### Other hero settings
 If you would like to hide the header text on the featured image on a page, set `omit_header_text` to `true`. See `exampleSite/content/contact.md` for an example.
 
 You don't need an image though. The default background color is black, but you can change the color, by changing the default color class in the config.toml file. Choose a background color from any on the [Tachyons](http://tachyons.io/docs/themes/skins/) library site, and preface it with "bg-"
@@ -122,6 +126,66 @@ This theme includes a shortcode for a contact form that you can add to any page 
 ```
 {{< form-contact action="https://formspree.io/your@email.com" >}}
 ```
+
+### Social Follow + Share
+
+The theme automatically adds "Follow" link icons to the header and footer and "Share" link icons to pages unless `disable_share` parameter is set to true either on the site level (site params) or page level (front matter). Each built-in services sports a label, an icon and a color.
+
+In order to register a service to be used, user must add an `ananke_socials` parameter to its project configuration file and list them through it in the desired order. Each entry must bear a 
+- name*: It matches the built-in service reference (Ex: twitter, github)
+- url*: The url of the handle's profile on the service (Ex: https://twitter.com/theNewDynamic, https://github.com/
+theNewDynamic)
+
+```yaml
+params:
+  ananke_socials:
+  - name: twitter
+    url: https://twitter.com/theNewDynamic
+  - name: github
+    url: https://github.com/theNewDynamic
+```
+
+If user needs to overwrite default `color` and `label` of the service, they simply need to append the following to the entry:
+- label: The displayed name of the service to be used to popuplate `[title]` attributes and read-only. (Ex: Twitter, GitHub)
+- color: Used for styling purposes. (Ex: '#1da1f2', '#6cc644')
+
+```yaml
+params:
+  ananke_socials:
+  - name: twitter
+    url: https://twitter.com/theNewDynamic
+    label: TND Twitter
+  - name: github
+    url: https://github.com/theNewDynamic
+    label: TND GitHub Account
+    color: '#ff6800'
+```
+
+#### Social Icons Customization
+
+On top of easily customizing the built-in services' label and color, user can overwrite their icon by adding an svg file at `/assets/ananke/socials` with a filename matching the service's name.
+For example, in order to use your own GitHub icon, simply add an svg file at `/assets/ananke/socials/github.svg`
+
+#### Built-in Services
+Here is the list of built-in services. Those marked with an `*` are also part of the "Share" module.
+
+- twitter*
+- instagram
+- youtube
+- github
+- gitlab
+- keybase
+- linkedin*
+- medium
+- mastodon
+- slack
+- stackoverflow
+- facebook*
+- rss
+
+#### Complement
+
+In order to add an unkown service (absent from the list above), you simply need to add all three settings to `ananke_socials`: name, url, label, color, and optionally add an icon file matching the `name` to the `assets/ananke/socials` directory. In the absence of an icon, the theme will print the service's label.
 
 ### Update font or body classes
 
@@ -155,6 +219,8 @@ Ananke stylesheet is built with Hugo Pipes's [Asset Bundling](https://gohugo.io/
 Ananke uses [Tachyon.io](http://tachyons.io/) utility class library.
 
 #### Custom CSS
+
+WARNING: Pending resolution of this [discussion](https://github.com/theNewDynamic/gohugo-theme-ananke/discussions/452#discussioncomment-1865301), Custom CSS only works with Hugo Extended
 
 In order to complement the default CSS with your own, you can add custom css files to the project. 
 
@@ -190,6 +256,34 @@ You can replace the title of your site in the top left corner of each page with 
 [params]
   site_logo = "img/logo.svg"
 ```
+
+### Set Content Font Color
+
+You can set the font color of the main content both globally and on individual pages:
+
+Globally:
+Set the `text_color` param in the `config.toml` file.
+```
+[params]
+  text_color = "green"
+```
+
+Individual Page (prioritized over global):
+Set the `text_color` param in a page's markdown file front matter.
+
+note: The value of `text_color` must be a valid tachyons color class. Alist can be found [here](http://tachyons.io/docs/themes/skins/).
+
+
+### Localize date format
+
+Dates of blog posts and single pages are rendered with the default date format commonly used in the USA and Canada. It is possible to specify a different format.
+
+```
+[params]
+  date_format = "2. January 2006"
+```
+
+See hugo's documentation of the [`dateFormat` function](https://gohugo.io/functions/dateformat/) for more details.
 
 
 ### Nearly finished

@@ -1,3 +1,4 @@
+{{ if eq .Site.Params.useFooterStats "true" }}
 <div id="social-stats-footer" style="display: none;">
   <br><br>
   <div style="text-align: center;">
@@ -25,9 +26,8 @@
     </div>
   </div>
   <br>
-  <div class="sharethis-inline-share-buttons"></div>
-  <br>
 </div>
+{{ end }}
 <footer class="{{ .Site.Params.background_color_class | default "bg-black" }} bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
     <div>
@@ -35,12 +35,17 @@
         &copy; {{ with .Site.Copyright | default .Site.Title }} {{ . | safeHTML }} {{ now.Format "2006"}} {{ end }}
       </a>
       <code class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3">
+        {{ if eq .Site.Params.useFooterReferral "true" }}
         <small>
           <a href="{{ .Site.Params.referral }}" target="_blank" onclick="BrewingCatsCore.LinkActions.openLink('{{ .Site.Params.referral }}', 'BCats')" 
             style="color: rgb(200, 200, 200); box-shadow: rgb(255, 153, 0) 0px -4px 0px inset; text-decoration: none; " 
             onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
             onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)">BCats</a>
-          Version: {{ .Site.Params.siteVersion }} Release: {{ .Site.Params.siteRelease }} Site Views: <span tag-id="site-page-views-footer">0</span></small>
+          Version: {{ .Site.Params.siteVersion }} Release: {{ .Site.Params.siteRelease }} Site Views: <span tag-id="site-page-views-footer">0</span>
+        </small>
+        {{ else }}
+        <small>Version: {{ .Site.Params.siteVersion }} Release: {{ .Site.Params.siteRelease }} Site Views: <span tag-id="site-page-views-footer">0</span></small>
+        {{ end }}
       </code>
     </div>
     <div>{{ partial "social-follow.html" . }}</div>

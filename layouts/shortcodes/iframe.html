@@ -1,0 +1,6 @@
+{{ $src := cond (.IsNamedParams) (.Get "src" ) (.Get 0 ) }}
+{{ $width := cond (.IsNamedParams) (.Get "width" ) (.Get 1 ) }}
+{{ $height := cond (.IsNamedParams) (.Get "height" ) (.Get 2 ) }}
+
+<iframe src="{{$src}}" width="{{$width}}" height="{{$height}}" frameborder="0" marginheight="0" marginwidth="0" frameborder='0' allowfullscreen>Loading…</iframe>
+<br>

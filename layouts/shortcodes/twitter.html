@@ -1,0 +1,8 @@
+{{ $profile := cond (.IsNamedParams) (.Get "profile" ) (.Get 0 ) }}
+{{ $ref := cond (.IsNamedParams) (.Get "ref" ) (.Get 1 ) }}
+<a 
+  class="twitter-timeline"
+  data-theme="light"
+  href="https://twitter.com/{{ $profile }}?ref_src={{ $ref }}"
+  >Tweets by {{ $profile }}</a> 
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

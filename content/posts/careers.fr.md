@@ -4,6 +4,7 @@ date: 2021-09-19T22:10:38-07:00
 draft: false
 featured_image: '/images/careers.jpg'
 description: Faire partie de notre equipe!
+lang: fr
 ---
 
 {{< customimg src="/images/ola.svg" width="75%" >}}
@@ -15,9 +16,8 @@ description: Faire partie de notre equipe!
 - Interprètes certifiés
 - Traducteurs certifiés
 
-{{< contactbtn email=careers@olainterpreting.com lang=fr >}}
+{{< contactbtn email=careers@olainterpreting.com >}}
 
 {{< pageStats >}}
-{{< sharethisbtn >}}
 
-{{< unsplash "fr" "zeH-ljawHtg" "giamboscaro" "Unsplash: Editorial, Arts & Culture, History" >}}
+{{< unsplash "zeH-ljawHtg" "giamboscaro" "Unsplash: Editorial, Arts & Culture, History" >}}

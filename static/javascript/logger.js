@@ -55,22 +55,27 @@ var BrewingCatsCore;
                 default:
                     console.log(log);
             }
-            let request = {
-                body: JSON.stringify(log),
-                method: 'POST',
-                mode: 'cors',
-                redirect: 'follow',
-                referrerPolicy: 'no-referrer',
-                headers: {
-                    'Accept': '*/*',
-                    'Access-Control-Allow-Origin': '*',
-                    'Content-Type': 'application/json',
-                    'Origin': window.location.origin
-                }
-            };
-            let p = fetch(BrewingCatsCore.Config.TelemetryUrl, request).then((response) => {
-                response.json().then((v) => { console.log(v); });
-            });
+            if (!window.location.origin.includes('localhost')) {
+                let request = {
+                    body: JSON.stringify(log),
+                    method: 'POST',
+                    mode: 'cors',
+                    redirect: 'follow',
+                    referrerPolicy: 'no-referrer',
+                    headers: {
+                        'Accept': '*/*',
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-Type': 'application/json',
+                        'Origin': window.location.origin
+                    }
+                };
+                let p = fetch(BrewingCatsCore.Config.TelemetryUrl, request).then((response) => {
+                    response.json().then((v) => { console.log(v); });
+                });
+            }
+            else {
+                console.log('Skipped Telemetry');
+            }
         }
         static trace(log) {
             Logger.customTrace(log.client, log.message, log.type, log.caller, log.tagId, log.category, log.metrics);
