@@ -15,7 +15,7 @@ if (-not (Test-Path $configToml)) {
 # Run Hugo Commands for building
 hugo --cleanDestinationDir
 
-# Cop CNAME to docs folder
+# Copy CNAME to docs folder
 $cname = Join-Path -Path $PSScriptRoot -ChildPath 'CNAME'
 if (-not (Test-Path $cname)) {
   Write-Error -Message ("CNAME file not found! At {0}" -f $cname)
