@@ -1,0 +1,24 @@
+{{ $lang := .Page.Params.lang }}
+{{ $msg := cond (eq $lang "en") "Scroll to Top" (cond (eq $lang "es") "Volver al Comienzo" "Scroll to Top") }}
+{{ if $lang | eq "es" }}
+{{ end }}
+
+<br />
+<div class="col align-self-center" style="text-align: center;">
+  <button type="button" class="btn btn-primary" onclick="invokeScrollToTop()">{{ $msg }}</button>
+</div>
+<script>
+  function invokeScrollToTop() {
+    BrewingCatsCore.Logger.traceInfo(
+      `Scrolling to top`,
+      'ScrollToTop',
+      'tagId_13',
+      'ComponentInteraction',
+      {
+        'url': window.location.href,
+      }
+    );
+
+    BrewingCatsCore.Util.scrollToTop();
+  }
+</script>

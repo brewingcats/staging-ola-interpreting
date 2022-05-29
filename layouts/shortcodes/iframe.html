@@ -2,5 +2,32 @@
 {{ $width := cond (.IsNamedParams) (.Get "width" ) (.Get 1 ) }}
 {{ $height := cond (.IsNamedParams) (.Get "height" ) (.Get 2 ) }}
 
-<iframe src="{{$src}}" width="{{$width}}" height="{{$height}}" frameborder="0" marginheight="0" marginwidth="0" frameborder='0' allowfullscreen>Loading…</iframe>
+{{ if .Get "style" }}
+{{ $id := md5 now.Unix }}
+<iframe id="a{{ $id }}" src="{{ $src }}" width="{{ $width }}" height="{{ $height }}" style="{{ $.Params.style }}" frameborder="0" marginheight="0" marginwidth="0" frameborder='0' allow="fullscreen">Loading…</iframe>
+<script>
+  (() => {
+    let paramStyle = '{{ .Get "style" }}';
+    let styles = paramStyle.split(';');
+    for (let i = 0; i < styles.length; i++) {
+      let stylePair = styles[i].split(':');
+      document.querySelector('#a{{ $id }}').style[stylePair[0]] = stylePair[1];
+    }
+  })();
+</script>
+{{ else }}
+<iframe src="{{ $src }}" width="{{ $width }}" height="{{ $height }}" frameborder="0" marginheight="0" marginwidth="0" frameborder='0' allow="fullscreen">Loading…</iframe>
+{{ end }}
+<script>
+  BrewingCatsCore.Logger.traceInfo(
+    `iframe Component`,
+    'component.iframe',
+    'tagId_15',
+    'ComponentSetup',
+    {
+      'component': 'iframe',
+      'src': '{{ $src }}'
+    }
+  );
+</script>
 <br>

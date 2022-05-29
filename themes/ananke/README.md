@@ -161,6 +161,21 @@ params:
     color: '#ff6800'
 ```
 
+#### Limit Follow or Share
+
+If a user needs to control Share and Follow of a service, for example enabling "Share on Facebook" without having a Facebook Page to "follow", they can set `follow: false` one the registered service.
+
+```yaml
+params:
+  ananke_socials:
+  - name: facebook
+    label: Facebook
+    follow: false
+  - name: twitter
+    url: https://twitter.com/theNewDynamic
+    label: TND Twitter
+```
+
 #### Social Icons Customization
 
 On top of easily customizing the built-in services' label and color, user can overwrite their icon by adding an svg file at `/assets/ananke/socials` with a filename matching the service's name.
@@ -239,6 +254,7 @@ For example, if your css files are `assets/ananke/css/custom.css` and `assets/an
   [params]
     custom_css = ["custom.css","special.css"]
 ```
+__IMPORTANT__: Files registered through the `custom_css` array, while unlimited in number, must be of the same type (Ex: all `scss` or all `css`)
 
 __Note on retrocompatibiliy for custom css__: If the files registered through the `custom_css` setting are not found in `assets/ananke/css` the theme will expect them to live at the given path relative to the static directory and load them as <link> requests.
 
@@ -287,7 +303,8 @@ Dates of blog posts and single pages are rendered with the default date format c
   date_format = "2. January 2006"
 ```
 
-See hugo's documentation of the [`dateFormat` function](https://gohugo.io/functions/dateformat/) for more details.
+With hugo 0.87.0 and above, you can also use predefined layout, like `:date_full`, and it will output localized dates or times. 
+See hugo's documentation of the [`time.Format` function](https://gohugo.io/functions/dateformat/) for more details.
 
 
 ### Nearly finished

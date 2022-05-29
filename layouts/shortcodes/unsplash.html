@@ -1,24 +1,19 @@
 {{/*< unsplash "photo_id" "author" "caption" >*/}}
 {{/*              0        1        2         3      */}}
 {{ $lang := .Page.Params.lang }}
-{{if eq $lang "en" }}
-  Image Credits: 
-  <a href="https://unsplash.com/photos/{{.Get 0 }}?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText&ref={{ $.Page.Site.Params.siteRef }}" target="_blank" 
-  style="color: rgb(34, 34, 34); box-shadow: rgb({{ $.Page.Site.Params.theme_color }}) 0px -4px 0px inset; text-decoration: none; " 
-  onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
-  onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)">{{.Get 2 }}</a> 
-  image by <a href="https://unsplash.com/@{{.Get 1}}/?ref={{ $.Page.Site.Params.siteRef }}" target="_blank"
-  style="color: rgb(34, 34, 34); box-shadow: rgb({{ $.Page.Site.Params.theme_color }}) 0px -4px 0px inset; text-decoration: none; " 
-  onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
-  onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)">@{{.Get 1}}</a>
-{{ else }}
-  Créditos de la Imagen: 
-  <a href="https://unsplash.com/photos/{{.Get 0 }}?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText&ref={{ $.Page.Site.Params.siteRef }}" target="_blank"
-  style="color: rgb(34, 34, 34); box-shadow: rgb({{ $.Page.Site.Params.theme_color }}) 0px -4px 0px inset; text-decoration: none; " 
-  onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
-  onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)">{{.Get 2 }}</a> 
-  imagen de <a href="https://unsplash.com/@{{.Get 1}}/?ref={{ $.Page.Site.Params.siteRef }}" target="_blank"
-  style="color: rgb(34, 34, 34); box-shadow: rgb({{ $.Page.Site.Params.theme_color }}) 0px -4px 0px inset; text-decoration: none; " 
-  onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
-  onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)">@{{.Get 1}}</a>
-{{ end }}
+{{ $imgCredits := cond (eq $lang "en") "Image Credits" (cond (eq $lang "es") "Créditos de la Imagen" "Image Credits") }}
+{{ $imgBy := cond (eq $lang "en") "image by" (cond (eq $lang "es") "imagen de" "image by") }}
+
+<div class="col align-self-center" style="text-align: center;">
+  <label>
+    {{ $imgCredits }}: 
+    <a href="https://unsplash.com/photos/{{.Get 0 }}?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText&ref={{ $.Page.Site.Params.siteRef }}" target="_blank" 
+    style="color: rgb(34, 34, 34); box-shadow: rgb({{ $.Page.Site.Params.theme_color }}) 0px -4px 0px inset; text-decoration: none; " 
+    onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
+    onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)">{{.Get 2 }}</a> 
+    {{ $imgBy }} <a href="https://unsplash.com/@{{.Get 1}}/?ref={{ $.Page.Site.Params.siteRef }}" target="_blank"
+    style="color: rgb(34, 34, 34); box-shadow: rgb({{ $.Page.Site.Params.theme_color }}) 0px -4px 0px inset; text-decoration: none; " 
+    onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
+    onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)">@{{.Get 1}}</a>
+  </label>
+</div>

@@ -1,0 +1,14 @@
+{{ $float := cond (eq (.Get "float") "") "left" (.Get "left") }}
+{{ $fsize := cond (eq (.Get "fsize") "") "40px" (.Get "fsize") }}
+{{ $lsize := cond (eq (.Get "lsize") "") "30px" (.Get "lsize") }}
+{{ $paddingt := cond (eq (.Get "paddingt") "") "15px" (.Get "paddingt") }}
+{{ $paddingr := cond (eq (.Get "paddingr") "") "8px" (.Get "paddingr") }}
+{{ $paddingl := cond (eq (.Get "paddingl") "") "3px" (.Get "paddingl") }}
+<span style="
+color: rgb({{ $.Page.Site.Params.theme_color }});
+float: {{ string $float }};
+font-size: {{ $fsize }};
+line-height: {{ $lsize }};
+padding-top: {{ $paddingt }};
+padding-right: {{ $paddingr }};
+padding-left: {{ $paddingl }};">{{ .Get "label" }}</span>

@@ -1,4 +1,4 @@
-{{/* carousel "en" "My Caption" "photo1" "photo2" "photoN" */}}
+{{/* carousel "My Caption" "photo1" "photo2" "photoN" */}}
 {{ $captionId := replace (replace (replace (.Get 1) " " "") "," "") "|" ""}}
 {{ $lang := .Page.Params.lang }}
 {{ $width := .Get 0 }}

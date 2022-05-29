@@ -1,0 +1,94 @@
+{{/*
+  {{< carousel-rich data="loterianft" width="50%" dropdown="yes" >}}
+
+Data schema:
+{lang(en|es)}:
+- img
+  caption
+  pos
+  caption_link
+  */}}
+
+{{ $lang := .Page.Params.lang }}
+{{ $data := index $.Site.Data $.Params.data }}
+<div id="{{ $.Params.data }}" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel" style="width: {{ $.Params.width }}; margin: auto;" >
+  <div class="carousel-indicators">
+    {{ range (index $data $lang) }}
+    <button type="button" data-bs-target="#{{ $.Params.data }}" data-bs-slide-to="{{ .pos }}" aria-label="Slide {{ .pos }}" class="{{ if gt .pos 0 }}{{else}}active{{ end }}"></button>
+    {{ end }}
+  </div>
+  <div class="carousel-inner">
+    {{ range (index $data $lang )}}
+    <div class="carousel-item {{ if gt .pos 0 }}{{else}}active{{ end }}">
+      <img src="{{ .img }}" class="d-block w-100" alt="{{ .caption }}" style="margin: auto;">
+    </div>
+    {{ end }}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#{{ $.Params.data }}" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">{{if $lang | eq "en" }}Previous{{ else }}Anterior{{ end }}</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#{{ $.Params.data }}" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">{{if $lang | eq "en" }}Next{{ else }}Siguiente{{ end }}</span>
+  </button>
+</div>
+<div class="col align-self-center">
+  <div id='carousel-label-{{ $.Params.data }}' style="text-align: center; font-style: italic;"></div>
+</div>
+<br>
+<script>
+  BrewingCatsCore.Logger.traceInfo(
+    `Carousel Component`,
+    'component.carousel',
+    'tagId_11',
+    'ComponentSetup',
+    {
+      'component': 'Carousel'
+    }
+  );
+
+  (() => {
+    let captionUrl = [];
+    let captions = [];
+    {{ range (index $data $lang) }}
+    captions.push("{{ .caption }}");
+    captionUrl.push("{{ .caption_link }}")
+    {{ end }}
+    let captionHtml = `<a href="${captionUrl[0]}" target="_blank" onclick="BrewingCatsCore.LinkActions.openLink('${captionUrl[0]}', '${captions[0]}')" 
+    style="color: rgb(34, 34, 34); box-shadow: rgb({{ $.Page.Site.Params.theme_color }}) 0px -4px 0px inset; text-decoration: none; " 
+    onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
+    onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)">${captions[0]}</a>`;
+    let carouselLabel = document.getElementById('carousel-label-{{ $.Params.data }}');
+    carouselLabel.innerHTML = captionHtml;
+    document.getElementById('{{ $.Params.data }}').addEventListener('slide.bs.carousel', (e) => {
+      carouselLabel.innerHTML = `<a href="${captionUrl[e.to]}" target="_blank" onclick="BrewingCatsCore.LinkActions.openLink('${captionUrl[e.to]}', '${captions[e.to]}')" 
+      style="color: rgb(34, 34, 34); box-shadow: rgb({{ $.Page.Site.Params.theme_color }}) 0px -4px 0px inset; text-decoration: none; " 
+      onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
+      onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)">${captions[e.to]}</a>`;
+    });
+  })();
+</script>
+{{/* Dropdown for carousel */}}
+{{ if $.Params.dropdown | eq "yes" }}
+<div class="col align-self-center">
+  <div class="dropdown" style="text-align: center;" >
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton-{{ $.Params.data }}" data-bs-toggle="dropdown" aria-expanded="false">
+      {{if $lang | eq "en" }}Go To...{{ else }}Ir a...{{ end }}
+    </button>
+    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton-{{ $.Params.data }}" style="max-height: 280px; overflow-y: auto;">
+      {{ range (index $data $lang) }}
+      <li><a class="dropdown-item" onclick="carouselGoTo({{ .pos }}, {{$.Params.data}})" >{{ .pos }} - {{ .caption }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+</div>
+<br />
+<script>
+  function carouselGoTo(num, id) {
+    let myCarousel = document.getElementById(id);
+    let carousel = new bootstrap.Carousel(myCarousel);
+    carousel.to(num);
+  }
+</script>
+{{ end }}

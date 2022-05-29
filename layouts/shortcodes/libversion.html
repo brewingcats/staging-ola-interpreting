@@ -1,0 +1,53 @@
+{{ $lang := .Page.Params.lang }}
+{{ $siteVersion := cond (eq $lang "en") "Website Version" (cond (eq $lang "es") "Versión del Sitio" "Website Version") }}
+{{ $coreVersion := cond (eq $lang "en") "Core Library Version" (cond (eq $lang "es") "Versión de Librería" "Core Library Version") }}
+{{ $releaseName := cond (eq $lang "en") "Release Name" (cond (eq $lang "es") "Nombre de la Versión" "Release Name") }}
+{{ $id := md5 now.Unix }}
+
+<table class="table table-bordered border-primary">
+  <thead>
+    <tr>
+      <th scope="col">{{ $siteVersion }}</th>
+      <th scope="col">{{ $coreVersion }}</th>
+      <th scope="col">{{ $releaseName }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="table-dark">
+        <div class="highlight">
+          <code class="language-bash" data-lang="bash">
+            <span style="display:flex;">
+              {{ .Site.Params.siteVersion }}
+            </span>
+          </code>
+        </div>
+      </td>
+      <td class="table-dark">
+        <div class="highlight">
+          <code class="language-bash" data-lang="bash">
+            <span style="display:flex;">
+              <span class="a{{ $id }}"></span>
+            </span>
+          </code>
+        </div>
+      </td>
+      <td class="table-dark">
+        <div class="highlight">
+          <code class="language-bash" data-lang="bash">
+            <span style="display:flex;">
+              {{ .Site.Params.siteRelease }}
+            </span>
+          </code>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br />
+
+<script>
+  (() => {
+    document.querySelector(".a{{ $id }}").innerHTML = `${BrewingCatsCore.Config.Version}`;
+  })();
+</script>
