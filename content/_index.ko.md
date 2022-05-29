@@ -1,6 +1,7 @@
 ---
 title: "Ola Interpreting"
 date: 2020-05-17T18:50:37-07:00
+featured_image: "/images/denver1.jpg"
 draft: false
 lang: ko
 ---
