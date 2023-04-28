@@ -1,0 +1,75 @@
+{{ $name := .Get "name"}}
+
+<button type="button" class="btn btn-primary position-relative">
+  <span id="{{ $name }}-post-1">Top Post</span>
+  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    <span id="{{ $name }}-count-1">1984</span>
+    <span class="visually-hidden">Top Resolution</span>
+  </span>
+</button>
+<br>
+<br>
+<button type="button" class="btn btn-primary position-relative">
+  <span id="{{ $name }}-post-2">Second Res</span>
+  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    <span id="{{ $name }}-count-2">114</span>
+    <span class="visually-hidden">Second to Top Resolution</span>
+  </span>
+</button>
+<br>
+<br>
+<button type="button" class="btn btn-primary position-relative">
+  <span id="{{ $name }}-post-3">Third Res</span>
+  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    <span id="{{ $name }}-count-3">58</span>
+    <span class="visually-hidden">Third to Top Resolution</span>
+  </span>
+</button>
+<script>
+  (() => {
+    let monthIds = [
+      window.BrewingCatsCore.TelemetryReader.getNthId(0),
+      window.BrewingCatsCore.TelemetryReader.getNthId(1),
+      window.BrewingCatsCore.TelemetryReader.getNthId(2),
+    ];
+
+    window.BrewingCatsCore.TelemetryReader.queryTelemetryData(
+      '{{ $name }}',
+      monthIds,
+      (data) => {
+        return data.filter(item => item.tagId === 'tagId_1');
+      },
+      (data) => {
+        let uris = {};
+        data.forEach((d) => {
+          let path = new URL(d.url).pathname;
+          if (uris[path] === undefined) {
+            uris[path] = 0;
+          }
+
+          uris[path]++;
+        });
+
+        let paths = [];
+        for (let prop in uris) {
+          paths.push({
+            path: prop,
+            count: uris[prop]
+          });
+        }
+
+        paths.sort((a, b) => {
+          if (a.count < b.count) return 1;
+          if (a.count > b.count) return -1;
+          return 0;
+        });
+
+        let appName = "{{ $name }}";
+        for (let i = 1; i <= 3; i++) {
+          document.getElementById(`${appName}-post-${i}`).innerHTML = paths[i].path;
+          document.getElementById(`${appName}-count-${i}`).innerHTML = paths[i].count;
+        }
+      }
+    );
+  })();
+</script>

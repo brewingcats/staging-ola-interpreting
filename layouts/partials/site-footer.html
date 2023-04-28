@@ -36,15 +36,15 @@
       </a>
       <code class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3">
         {{ if eq .Site.Params.useFooterReferral "true" }}
-        <small>
+        <small class="BCCore-Update-SiteVersion">
           <a href="{{ .Site.Params.referral }}" target="_blank" onclick="BrewingCatsCore.LinkActions.openLink('{{ .Site.Params.referral }}', 'BCats')" 
             style="color: rgb(200, 200, 200); box-shadow: rgb(255, 153, 0) 0px -4px 0px inset; text-decoration: none; " 
             onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
             onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)">BCats</a>
-          Version: {{ .Site.Params.siteVersion }} Release: {{ .Site.Params.siteRelease }} Site Views: <span tag-id="site-page-views-footer">0</span>
+          Version: ### Release: @@@ Site Views: <span tag-id="site-page-views-footer">0</span>
         </small>
         {{ else }}
-        <small>Version: {{ .Site.Params.siteVersion }} Release: {{ .Site.Params.siteRelease }} Site Views: <span tag-id="site-page-views-footer">0</span></small>
+        <small class="BCCore-Update-SiteVersion">Version: ### Release: @@@ Site Views: <span tag-id="site-page-views-footer">0</span></small>
         {{ end }}
       </code>
     </div>

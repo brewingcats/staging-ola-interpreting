@@ -1,17 +1,34 @@
 {{ $lang := .Page.Params.lang }}
 <script>
-  $(document).ready(() => {
-    window.HeadParser.Control.updateHeaders();
-    $('#tocContents')[0].appendChild(window.HeadParser.Control.CreateHeaderList());
-  });
+  (() => {
+    window.addEventListener("load", function(){
+      window.HeadParser.Control.updateHeaders();
+      window.document.getElementById('tocContents')
+        .appendChild(window.HeadParser.Control.CreateHeaderList());
+    });
+  })();
 </script>
 <aside id="toc">
   <p>
-    <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseToc" aria-expanded="false" aria-controls="collapseToc">
+    <button class="btn btn-light"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseToc"
+      aria-expanded="false"
+      aria-controls="collapseToc"
+    >
       {{ if eq $lang "en" }}
-      <h2>Table of Contents</h2>
+      <h2
+        style="color: rgb(34, 34, 34); text-decoration: none; box-shadow: rgb({{ $.Page.Site.Params.theme_color }}) 0px -4px 0px inset;"
+        onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
+        onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)"
+      >Table of Contents</h2>
       {{ else if eq $lang "es" }}
-      <h2>Tabla de Contenidos</h2>
+      <h2 
+        style="color: rgb(34, 34, 34); text-decoration: none; box-shadow: rgb({{ $.Page.Site.Params.theme_color }}) 0px -4px 0px inset;"
+        onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
+        onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)"
+      >Tabla de Contenidos</h2>
       {{ end }}
     </button>
   </p>

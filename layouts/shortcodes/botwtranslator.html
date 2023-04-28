@@ -36,13 +36,13 @@
   }
 
   function doTranslate(id) {
-    let msgArea = $('[tagId="messageDisplay-' + id + '"]');
-    msgArea.html('');
-    let transArea = $('[tagId="transResult-' + id + '"]');
-    transArea.html('');
-    let text = $('[tagId="transText-' + id + '"]').val();
+    let msgArea = window.document.querySelector(`[tagId="messageDisplay-${id}"]`);
+    msgArea.innerHTML = '';
+    let transArea = window.document.querySelector(`[tagId="transResult-${id}"]`);
+    transArea.innerHTML = '';
+    let text = window.document.querySelector(`[tagId="transText-${id}"]`).value;
     if (text === '' || text === null || text === undefined) {
-      msgArea.html('<p class="text-danger">Invalid input text</p>');
+      msgArea.innerHTML = '<p class="text-danger">Invalid input text</p>';
       return;
     }
 
@@ -58,12 +58,12 @@
     );
 
     let styleNumber = 1;
-    let style2Radio = $('[tagId="goldenStyle-' + id + '"]');
-    if (style2Radio.is(":checked")) {
+    let style2Radio = window.document.querySelector(`[tagId="goldenStyle-${id}"]`);
+    if (style2Radio.checked) {
       styleNumber = 2;
     }
 
-    console.log('Style Number: ' + styleNumber);
+    //console.log('Style Number: ' + styleNumber);
     text = text.toLowerCase();
     let supportedChars = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','1','2','3','4','5','6','7','8','9','0','-','.','!','?'];
     let unsupportedFound = [];
@@ -97,7 +97,7 @@
       }
     }
     
-    transArea.html(imgs);
+    transArea.innerHTML = imgs;
     if (unsupportedFound.length > 0) {
       msgArea.html('<p class="text-danger">Ignored unsupported characters: "' + unsupportedFound.join('", "') + '"</p>');
       BrewingCatsCore.Logger.traceWarn(

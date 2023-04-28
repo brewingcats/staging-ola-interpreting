@@ -1,0 +1,23 @@
+{{ $name := .Get "name"}}
+
+<h3 style="text-align: center; color:rgb({{ $.Page.Site.Params.theme_color }});">
+  <code id="{{ $name }}">Loading</code>
+</h3>
+<script>
+  (() => {
+    window.BrewingCatsCore.TelemetryReader.getTelemetryData(
+      window.BrewingCatsCore.TelemetryReader.getCurrentId(),
+      (d, s) => {
+        const tag1 = d.filter(i => i.tagId === 'tagId_1' && i.url.indexOf('olainterpreting') === -1);
+        let users = [];
+        tag1.forEach((i) => {
+          if (!users.includes(i.ClientId)) {
+            users.push(i.ClientId);
+          }
+        });
+
+        document.getElementById('{{ $name }}').innerHTML = users.length;
+      }
+    );
+  })();
+</script>

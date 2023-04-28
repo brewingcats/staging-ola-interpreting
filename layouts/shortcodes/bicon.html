@@ -1,14 +1,17 @@
 {{ $color := "currentColor" }}
 {{ $name := .Get 0 }}
 {{ $val := .Get 1 }}
+{{ $width := .Get 2 | default 16 }}
+{{ $height := .Get 3 | default 16 }}
+
 {{ with $val }}
   {{if eq $val "currentColor" }}
-    {{ partial "bicon.html" (dict "name" $name "color" $color ) }}
+    {{ partial "bicon.html" (dict "name" $name "color" $color "width" $width "height" $height ) }}
   {{ else if eq $val "themeColor" }}
     {{ $color := replace "rgba(#)" "#" $.Page.Site.Params.theme_color }}
-    {{ partial "bicon.html" (dict "name" $name "color" $color ) }}
+    {{ partial "bicon.html" (dict "name" $name "color" $color "width" $width "height" $height ) }}
   {{ else }}
     {{ $color := $val }}
-    {{ partial "bicon.html" (dict "name" $name "color" $color ) }}
+    {{ partial "bicon.html" (dict "name" $name "color" $color "width" $width "height" $height ) }}
   {{ end }}
 {{ end }}

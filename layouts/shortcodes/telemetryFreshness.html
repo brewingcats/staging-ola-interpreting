@@ -1,0 +1,13 @@
+{{ $name := .Get "name"}}
+
+<code id="{{ $name }}">Loading</code>
+<script>
+  (()=> {
+    window.BrewingCatsCore.TelemetryReader.getDataDir((d, s) => {
+      let currentId = window.BrewingCatsCore.TelemetryReader.getCurrentId();
+      currentId = `${window.BrewingCatsCore.Config.TelemetryDataEnv}-${currentId}`;
+      let currentDir = d.filter(i => i.Name.indexOf(currentId) != -1)[0];
+      document.getElementById('{{ $name }}').innerHTML = currentDir.LastWriteTime.toLocaleString();
+    });
+  })();
+</script>

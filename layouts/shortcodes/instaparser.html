@@ -3,7 +3,7 @@
 {{ $invalidUrl := cond (eq $lang "en") "Invalid URL" (cond (eq $lang "es") "URL Incorrecta" "Invalid URL") }}
 <script type="text/javascript">
   function LoadInstagramPost() {
-    let inputVal = $('#instagram-url-input').val();
+    let inputVal = window.document.getElementById('instagram-url-input').innerHTML;
     BrewingCatsCore.Logger.traceInfo(
       `Instaparser Component`,
       'component.instaparser',
@@ -18,25 +18,25 @@
     if (inputVal !== '' && inputVal !== null) {
       let isValidUrl = validURL(inputVal);
       if (!isValidUrl) {
-        $('#parseButton').tooltip('show');
-        let tooltipId = $('#parseButton').attr('aria-describedby');
-        $('#' + tooltipId + " div.tooltip-inner").text("{{ $invalidUrl }}");
-        $('#parseButton').removeClass('btn-primary');
-        $('#parseButton').addClass('btn-danger');
+        window.document.getElementById('parseButton').tooltip('show');
+        let tooltipId = window.document.getElementById('parseButton').getAttribute('aria-describedby');
+        window.document.querySelector(`${tooltipId} div.tooltip-inner`).innerHTML = "{{ $invalidUrl }}";
+        window.document.getElementById('parseButton').classList.remove('btn-primary');
+        window.document.getElementById('parseButton').classList.add('btn-danger');
 
-        setTimeout(() => { 
-          $('#parseButton').tooltip('hide');
-          $('#parseButton').removeClass('btn-danger');
-          $('#parseButton').addClass('btn-primary');
+        setTimeout(() => {
+          window.document.getElementById('parseButton').tooltip('hide');
+          window.document.getElementById('parseButton').classList.remove('btn-danger');
+          window.document.getElementById('parseButton').classList.add('btn-primary');
         }, 1000);
       } else {
         let instaUrl = new  URL(inputVal);
         if (instaUrl.pathname.startsWith('/p/')) {
           let segment = instaUrl.pathname.replace('/p/', '').replace('/', '');
-          $('#instagramFragmentCode').text(segment);
-          $('#instagramUrlSearch').text('?insta=' + segment);
-          $('#urlToEmbedLink').attr('href', '/posts/instagram/?insta=' + segment);
-          $('#instagramUrlCode').text(location.origin + '/posts/instagram/?insta=' + segment);
+          window.document.getElementById('instagramFragmentCode').innerHTML = segment;
+          window.document.getElementById('instagramUrlSearch').innerHTML = `?insta=${segment}`;
+          window.document.getElementById('urlToEmbedLink').setAttribute('href', `/posts/instagram/?insta=${segment}`);
+          window.document.getElementById('instagramUrlCode').innerHTML = `${location.origin}/posts/instagram/?insta=${segment}`;
           let lang = "{{ $lang }}";
           let tag = '';
           if (lang === "en") {
@@ -46,39 +46,39 @@
           }
 
           window.AutoInstagram.Control.QueryAndAddInstagramPost(segment, tag);
-          $('#urlToEmbedLink').tooltip('show');
-          $('#parseButton').tooltip('show');
+          window.document.getElementById('urlToEmbedLink').tooltip('show');
+          window.document.getElementById('parseButton').tooltip('show');
           
           setTimeout(() => { 
-            $('#urlToEmbedLink').tooltip('hide');
-            $('#parseButton').tooltip('hide');
+            window.document.getElementById('urlToEmbedLink').tooltip('hide');
+            window.document.getElementById('parseButton').tooltip('hide');
           }, 1000);
         } else {
           // Telemetry
-          $('#parseButton').tooltip('show');
-          let tooltipId = $('#parseButton').attr('aria-describedby');
-          $('#' + tooltipId + " div.tooltip-inner").text("{{ $invalidUrl }}");
-          $('#parseButton').removeClass('btn-primary');
-          $('#parseButton').addClass('btn-danger');
+          window.document.getElementById('parseButton').tooltip('show');
+          let tooltipId = window.document.getElementById('parseButton').getAttribute('aria-describedby');
+          window.document.getElementById(`${tooltipId} div.tooltip-inner`).innerHTML = "{{ $invalidUrl }}";
+          window.document.getElementById('parseButton').classList.remove('btn-primary');
+          window.document.getElementById('parseButton').classList.add('btn-danger');
 
-          setTimeout(() => { 
-            $('#parseButton').tooltip('hide');
-            $('#parseButton').removeClass('btn-danger');
-            $('#parseButton').addClass('btn-primary');
+          setTimeout(() => {
+            window.document.getElementById('parseButton').tooltip('hide');
+            window.document.getElementById('parseButton').classList.remove('btn-danger');
+            window.document.getElementById('parseButton').classList.add('btn-primary');
           }, 1000);
         }
       }
     } else {
-      $('#parseButton').tooltip('show');
-      let tooltipId = $('#parseButton').attr('aria-describedby');
-      $('#' + tooltipId + " div.tooltip-inner").text("{{ $invalidUrl }}");
-      $('#parseButton').removeClass('btn-primary');
-      $('#parseButton').addClass('btn-danger');
+      window.document.getElementById('parseButton').tooltip('show');
+      let tooltipId = window.document.getElementById('parseButton').attributes.getNamedItem('aria-describedby').value;
+      window.document.getElementById(`${tooltipId} div.tooltip-inner`).innerHTML = "{{ $invalidUrl }}";
+      window.document.getElementById('parseButton').classList.remove('btn-primary');
+      window.document.getElementById('parseButton').classList.add('btn-danger');
 
-      setTimeout(() => { 
-        $('#parseButton').tooltip('hide');
-        $('#parseButton').removeClass('btn-danger');
-        $('#parseButton').addClass('btn-primary');
+      setTimeout(() => {
+        window.document.getElementById('parseButton').tooltip('hide');
+        window.document.getElementById('parseButton').classList.remove('btn-danger');
+        window.document.getElementById('parseButton').classList.add('btn-primary');
       }, 1000);
     }
   }
@@ -94,13 +94,14 @@
       lang = 'Copiado!'
     }
     
-    $('#copyFragmentArea').val($('#instagramUrlSearch').text());
-    $('#copyFragmentArea').css("display", "block");
-    $('#copyFragmentArea').select();
+    window.document.getElementById('copyFragmentArea').innerHTML = window.document.getElementById('instagramUrlSearch').innerHTML;
+    window.document.getElementById('copyFragmentArea').style.display = 'block';
+    window.document.getElementById('copyFragmentArea').select();
+    
     document.execCommand('copy');
-    $('#copyFragmentArea').css("display", "none");
-    let tooltipId = $('#copyFragmentButton').attr('aria-describedby');
-    $('#' + tooltipId + " div.tooltip-inner").text(lang);
+    window.document.getElementById('copyFragmentArea').style.display = 'none';
+    let tooltipId = window.document.getElementById('copyFragmentButton').attributes.getNamedItem('aria-describedby').value;
+    window.document.querySelector(`${tooltipId} div.tooltip-inner`).innerText = lang;
   }
   
   function CopyUrl() {
@@ -114,13 +115,14 @@
       lang = 'Copiado!'
     }
 
-    $('#copyUrlArea').val($('#instagramUrlCode').text());
-    $('#copyUrlArea').css("display", "block");
-    $('#copyUrlArea').select();
+    window.document.getElementById('copyUrlArea').innerHTML = window.document.getElementById('instagramUrlCode').innerText;
+    window.document.getElementById('copyUrlArea').style.display = 'block';
+    window.document.getElementById('copyUrlArea').select();
     document.execCommand('copy');
-    $('#copyUrlArea').css("display", "none");
-    let tooltipId = $('#copyUrlButton').attr('aria-describedby');
-    $('#' + tooltipId + " div.tooltip-inner").text(lang);
+    
+    window.document.getElementById('copyUrlArea').style.display = 'none';
+    let tooltipId = window.document.getElementById('copyUrlButton').attributes.getNamedItem('aria-describedby').value;
+    window.document.querySelector(`${tooltipId} div.tooltip-inner`).innerHTML = lang;
   }
 
   function validURL(str) {
@@ -136,17 +138,17 @@
   function Localize() {
     let lang = "{{ $lang }}";
     if (lang === "es") {
-      $('#enterInstagramPost').text('Ingrese el URL de la Foto de Instagram:');
-      $('#parseButton').text('Extraer');
-      $('#instagram-postId-field').text('Identificador de Foto de Instagram');
-      $('#instagramFragmentCode').text('ninguno');
-      $('#copyFragmentButton').text('Copiar');
-      $('#copyFragmentButton').attr('title', 'Copiar Fragmento');
-      $('#urlToEmbedLink').text('URL para embeber');
-      $('#urlToEmbedLink').attr('title', 'Actualizado!');
-      $('#instagramUrlCode').text('ninguna');
-      $('#copyUrlButton').text('Copiar');
-      $('#copyUrlButton').attr('title', 'Copiar URL');
+      window.document.getElementById('enterInstagramPost').innerHTML = 'Ingrese el URL de la Foto de Instagram:';
+      window.document.getElementById('parseButton').innerHTML = 'Extraer';
+      window.document.getElementById('instagram-postId-field'),innerHTML = 'Identificador de Foto de Instagram';
+      window.document.getElementById('instagramFragmentCode').innerHTML = 'ninguno';
+      window.document.getElementById('copyFragmentButton').innerHTML = 'Copiar';
+      window.document.getElementById('copyFragmentButton').attributes.setNamedItem('title', 'Copiar Fragmento');
+      window.document.getElementById('urlToEmbedLink').innerHTML = 'URL para embeber';
+      window.document.getElementById('urlToEmbedLink').attributes.setNamedItem('title', 'Actualizado!');
+      window.document.getElementById('instagramUrlCode').innerHTML = 'ninguna';
+      window.document.getElementById('copyUrlButton').innerHTML = 'Copiar';
+      window.document.getElementById('copyUrlButton').attributes.setNamedItem('title', 'Copiar URL');
     }
   }
 </script>
@@ -194,7 +196,7 @@
 <script type="text/javascript">
   Localize();
 
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip({delay: { "show": 200, "hide": 300 }});
-  })
+  window.addEventListener('onload', () => {
+    window.document.querySelector('[data-toggle="tooltip"]').tooltip({delay: { "show": 200, "hide": 300 }});
+  }, false);
 </script>

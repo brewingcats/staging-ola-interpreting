@@ -101,6 +101,6 @@
 </div>
 {{ with $.Page.Site.Params.phone }}
   <script>
-    $('a[href="REPLACE-ME"]').attr('href', '{{ $phoneNo }}');
+    window.document.querySelector('a[href="REPLACE-ME"]').setAttribute('href', '{{ $phoneNo }}');
   </script>
 {{ end }}

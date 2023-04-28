@@ -1,25 +1,298 @@
 {{ if eq .name "cartcheck" }}
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="{{ .color }}" class="bi bi-cart-check" viewBox="0 0 16 16">
+<svg xmlns="http://www.w3.org/2000/svg" width="{{ .width }}" height="{{ .height }}" fill="{{ .color }}" class="bi bi-cart-check" viewBox="0 0 16 16">
   <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
   <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
 </svg>
 {{ end }}
 
 {{ if eq .name "upcscan" }}
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="{{ .color }}" class="bi bi-upc-scan" viewBox="0 0 16 16">
+  <svg xmlns="http://www.w3.org/2000/svg" width="{{ .width }}" height="{{ .height }}" fill="{{ .color }}" class="bi bi-upc-scan" viewBox="0 0 16 16">
     <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5zM3 4.5a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-7zm3 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7z"/>
   </svg>
 {{ end }}
 
 {{ if eq .name "whatsapp" }}
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="{{ .color }}" class="bi bi-whatsapp" viewBox="0 0 16 16">
+  <svg xmlns="http://www.w3.org/2000/svg" width="{{ .width }}" height="{{ .height }}" fill="{{ .color }}" class="bi bi-whatsapp" viewBox="0 0 16 16">
     <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
   </svg>
 {{ end }}
 
 {{ if eq .name "cashstack" }}
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="{{ .color }}" class="bi bi-cash-stack" viewBox="0 0 16 16">
+  <svg xmlns="http://www.w3.org/2000/svg" width="{{ .width }}" height="{{ .height }}" fill="{{ .color }}" class="bi bi-cash-stack" viewBox="0 0 16 16">
     <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
     <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z"/>
   </svg>
+{{ end }}
+
+{{ if eq .name "facebook" }}
+  <svg xmlns="http://www.w3.org/2000/svg" width="{{ .width }}" height="{{ .height }}" fill="{{ .color }}" class="bi bi-facebook" viewBox="0 0 16 16">
+    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+  </svg>
+{{ end }}
+
+{{ if eq .name "twitter" }}
+  <svg xmlns="http://www.w3.org/2000/svg" width="{{ .width }}" height="{{ .height }}" fill="{{ .color }}" viewBox="0 0 16 16">
+    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+  </svg>
+{{ end }}
+
+{{ if eq .name "instagram" }}
+<svg xmlns="http://www.w3.org/2000/svg" width="{{ .width }}" height="{{ .height }}" fill="{{ .color }}" viewBox="0 0 16 16">
+    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+  </svg>
+{{ end }}
+
+{{ if eq .name "snapchat" }}
+  <svg xmlns="http://www.w3.org/2000/svg" width="{{ .width }}" height="{{ .height }}" fill="{{ .color }}" viewBox="0 0 16 16">
+    <path d="M15.943 11.526c-.111-.303-.323-.465-.564-.599a1.416 1.416 0 0 0-.123-.064l-.219-.111c-.752-.399-1.339-.902-1.746-1.498a3.387 3.387 0 0 1-.3-.531c-.034-.1-.032-.156-.008-.207a.338.338 0 0 1 .097-.1c.129-.086.262-.173.352-.231.162-.104.289-.187.371-.245.309-.216.525-.446.66-.702a1.397 1.397 0 0 0 .069-1.16c-.205-.538-.713-.872-1.329-.872a1.829 1.829 0 0 0-.487.065c.006-.368-.002-.757-.035-1.139-.116-1.344-.587-2.048-1.077-2.61a4.294 4.294 0 0 0-1.095-.881C9.764.216 8.92 0 7.999 0c-.92 0-1.76.216-2.505.641-.412.232-.782.53-1.097.883-.49.562-.96 1.267-1.077 2.61-.033.382-.04.772-.036 1.138a1.83 1.83 0 0 0-.487-.065c-.615 0-1.124.335-1.328.873a1.398 1.398 0 0 0 .067 1.161c.136.256.352.486.66.701.082.058.21.14.371.246l.339.221a.38.38 0 0 1 .109.11c.026.053.027.11-.012.217a3.363 3.363 0 0 1-.295.52c-.398.583-.968 1.077-1.696 1.472-.385.204-.786.34-.955.8-.128.348-.044.743.28 1.075.119.125.257.23.409.31a4.43 4.43 0 0 0 1 .4.66.66 0 0 1 .202.09c.118.104.102.26.259.488.079.118.18.22.296.3.33.229.701.243 1.095.258.355.014.758.03 1.217.18.19.064.389.186.618.328.55.338 1.305.802 2.566.802 1.262 0 2.02-.466 2.576-.806.227-.14.424-.26.609-.321.46-.152.863-.168 1.218-.181.393-.015.764-.03 1.095-.258a1.14 1.14 0 0 0 .336-.368c.114-.192.11-.327.217-.42a.625.625 0 0 1 .19-.087 4.446 4.446 0 0 0 1.014-.404c.16-.087.306-.2.429-.336l.004-.005c.304-.325.38-.709.256-1.047Zm-1.121.602c-.684.378-1.139.337-1.493.565-.3.193-.122.61-.34.76-.269.186-1.061-.012-2.085.326-.845.279-1.384 1.082-2.903 1.082-1.519 0-2.045-.801-2.904-1.084-1.022-.338-1.816-.14-2.084-.325-.218-.15-.041-.568-.341-.761-.354-.228-.809-.187-1.492-.563-.436-.24-.189-.39-.044-.46 2.478-1.199 2.873-3.05 2.89-3.188.022-.166.045-.297-.138-.466-.177-.164-.962-.65-1.18-.802-.36-.252-.52-.503-.402-.812.082-.214.281-.295.49-.295a.93.93 0 0 1 .197.022c.396.086.78.285 1.002.338.027.007.054.01.082.011.118 0 .16-.06.152-.195-.026-.433-.087-1.277-.019-2.066.094-1.084.444-1.622.859-2.097.2-.229 1.137-1.22 2.93-1.22 1.792 0 2.732.987 2.931 1.215.416.475.766 1.013.859 2.098.068.788.009 1.632-.019 2.065-.01.142.034.195.152.195a.35.35 0 0 0 .082-.01c.222-.054.607-.253 1.002-.338a.912.912 0 0 1 .197-.023c.21 0 .409.082.49.295.117.309-.04.56-.401.812-.218.152-1.003.638-1.18.802-.184.169-.16.3-.139.466.018.14.413 1.991 2.89 3.189.147.073.394.222-.041.464Z"/>
+  </svg>
+{{ end }}
+
+{{ if eq .name "reddit" }}
+  <svg xmlns="http://www.w3.org/2000/svg" width="{{ .width }}" height="{{ .height }}" fill="{{ .color }}" viewBox="0 0 16 16">
+    <path d="M6.167 8a.831.831 0 0 0-.83.83c0 .459.372.84.83.831a.831.831 0 0 0 0-1.661zm1.843 3.647c.315 0 1.403-.038 1.976-.611a.232.232 0 0 0 0-.306.213.213 0 0 0-.306 0c-.353.363-1.126.487-1.67.487-.545 0-1.308-.124-1.671-.487a.213.213 0 0 0-.306 0 .213.213 0 0 0 0 .306c.564.563 1.652.61 1.977.61zm.992-2.807c0 .458.373.83.831.83.458 0 .83-.381.83-.83a.831.831 0 0 0-1.66 0z"/>
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.828-1.165c-.315 0-.602.124-.812.325-.801-.573-1.9-.945-3.121-.993l.534-2.501 1.738.372a.83.83 0 1 0 .83-.869.83.83 0 0 0-.744.468l-1.938-.41a.203.203 0 0 0-.153.028.186.186 0 0 0-.086.134l-.592 2.788c-1.24.038-2.358.41-3.17.992-.21-.2-.496-.324-.81-.324a1.163 1.163 0 0 0-.478 2.224c-.02.115-.029.23-.029.353 0 1.795 2.091 3.256 4.669 3.256 2.577 0 4.668-1.451 4.668-3.256 0-.114-.01-.238-.029-.353.401-.181.688-.592.688-1.069 0-.65-.525-1.165-1.165-1.165z"/>
+  </svg>
+{{ end }}
+
+{{ if eq .name "linkedin" }}
+  <svg xmlns="http://www.w3.org/2000/svg" width="{{ .width }}" height="{{ .height }}" fill="{{ .color }}" viewBox="0 0 16 16">
+    <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+  </svg>
+{{ end }}
+
+{{ if eq .name "github" }}
+  <svg xmlns="http://www.w3.org/2000/svg" width="{{ .width }}" height="{{ .height }}" fill="{{ .color }}" viewBox="0 0 16 16">
+    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+  </svg>
+{{ end }}
+
+{{ if eq .name "gitlab" }}
+  <svg xmlns="http://www.w3.org/2000/svg" width="{{ .width }}" height="{{ .height }}" fill="none" viewBox="0 0 32 32">
+    <path d="M31.4618 12.7787L31.417 12.6641L27.0667 1.31308C26.9783 1.09046 26.8218 0.90145 26.6197 0.773028C26.416 0.644476 26.1775 0.582308 25.937 0.595107C25.6965 0.607906 25.4659 0.695039 25.277 0.844481C25.0899 0.994513 24.955 1.1998 24.8915 1.43106L21.9503 10.4324H10.0509L7.10976 1.43106C7.04625 1.1998 6.91133 0.994513 6.72425 0.844481C6.53618 0.694035 6.30572 0.606246 6.06523 0.593431C5.82473 0.580616 5.58625 0.64342 5.38326 0.773028C5.18023 0.900924 5.02312 1.09005 4.9346 1.31308L0.579314 12.679L0.534448 12.792C-0.0907536 14.429 -0.167604 16.2247 0.315452 17.9091C0.798508 19.5935 1.81536 21.0756 3.21309 22.1324L3.22971 22.144L3.26793 22.1739L9.90306 27.1407L13.1832 29.625L15.1773 31.1354C15.4115 31.3124 15.6971 31.4082 15.9907 31.4082C16.2842 31.4082 16.5698 31.3124 16.8041 31.1354L18.7981 29.625L22.0799 27.1407L28.7533 22.144L28.7715 22.1307C30.174 21.0749 31.1949 19.5916 31.6802 17.9045C32.1656 16.2175 32.0889 14.4184 31.4618 12.7787Z" fill="#E24329"></path>
+    <path d="M31.462 12.7787L31.4172 12.6641C29.2955 13.1013 27.2962 14.0005 25.5614 15.2978L16.0083 22.5378C19.2652 25.0005 22.1001 27.1407 22.1001 27.1407L28.7734 22.144L28.7917 22.1307C30.1907 21.0723 31.2076 19.5877 31.6893 17.9009C32.171 16.214 32.0912 14.4163 31.462 12.7787Z" fill="#FC6D26"></path>
+    <path d="M9.9082 27.1407L13.1834 29.625L15.1774 31.1354C15.4117 31.3124 15.6972 31.4082 15.9908 31.4082C16.2844 31.4082 16.57 31.3124 16.8042 31.1354L18.7982 29.625L22.0801 27.1407C22.0801 27.1407 19.2452 25.0005 15.9883 22.5378L9.9082 27.1407Z" fill="#FCA326"></path>
+    <path d="M6.43513 15.3045C4.70076 14.0067 2.70123 13.108 0.579333 12.6724L0.534467 12.7854C-0.0923403 14.4232 -0.170036 16.2203 0.313079 17.9061C0.796194 19.5919 1.81396 21.0751 3.21311 22.1324L3.22973 22.144L3.26795 22.1739L9.90307 27.1407L16.0081 22.5378L6.43513 15.3045Z" fill="#FC6D26"></path>
+  </svg>
+{{ end }}
+
+{{ if eq .name "tableau" }}
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" width="{{ .width }}" height="{{ .height }}" viewBox="0, 0, 180, 180">
+  <defs>
+    <clipPath id="Clip_1">
+      <path d="M84.753,61.77 L96.753,61.77 L96.753,120.57 L84.753,120.57 z M93.753,64.77 L87.753,64.77 L87.753,117.57 L93.753,117.57 L93.753,64.77 z"/>
+    </clipPath>
+    <filter id="Shadow_2">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+      <feOffset dx="0" dy="0" result="offsetblur"/>
+      <feFlood flood-color="#E9762D"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <clipPath id="Clip_3">
+      <path d="M61.353,85.17 L120.153,85.17 L120.153,97.17 L61.353,97.17 z M117.153,88.17 L64.353,88.17 L64.353,94.17 L117.153,94.17 L117.153,88.17 z"/>
+    </clipPath>
+    <filter id="Shadow_4">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+      <feOffset dx="0" dy="0" result="offsetblur"/>
+      <feFlood flood-color="#E9762D"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <filter id="Shadow_5">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+      <feOffset dx="2" dy="2" result="offsetblur"/>
+      <feFlood flood-color="#EC912D"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <filter id="Shadow_6">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+      <feOffset dx="2" dy="2" result="offsetblur"/>
+      <feFlood flood-color="#EC912D"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <filter id="Shadow_7">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+      <feOffset dx="-2" dy="-2" result="offsetblur"/>
+      <feFlood flood-color="#1C447E"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <filter id="Shadow_8">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+      <feOffset dx="-2" dy="-2" result="offsetblur"/>
+      <feFlood flood-color="#1C447E"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <filter id="Shadow_9">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+      <feOffset dx="2" dy="-2" result="offsetblur"/>
+      <feFlood flood-color="#C92035"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <filter id="Shadow_10">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+      <feOffset dx="2" dy="-2" result="offsetblur"/>
+      <feFlood flood-color="#C92035"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <filter id="Shadow_11">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+      <feOffset dx="-2" dy="2" result="offsetblur"/>
+      <feFlood flood-color="#59879B"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <filter id="Shadow_12">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+      <feOffset dx="-2" dy="2" result="offsetblur"/>
+      <feFlood flood-color="#59879B"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <filter id="Shadow_13">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.5"/>
+      <feOffset dx="0" dy="2" result="offsetblur"/>
+      <feFlood flood-color="#7099A6"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <filter id="Shadow_14">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.5"/>
+      <feOffset dx="0" dy="2" result="offsetblur"/>
+      <feFlood flood-color="#7099A6"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <filter id="Shadow_15">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.5"/>
+      <feOffset dx="2" dy="0" result="offsetblur"/>
+      <feFlood flood-color="#7099A6"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <filter id="Shadow_16">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.5"/>
+      <feOffset dx="2" dy="0" result="offsetblur"/>
+      <feFlood flood-color="#7099A6"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <filter id="Shadow_17">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.5"/>
+      <feOffset dx="0" dy="-2" result="offsetblur"/>
+      <feFlood flood-color="#5A6591"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <filter id="Shadow_18">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.5"/>
+      <feOffset dx="0" dy="-2" result="offsetblur"/>
+      <feFlood flood-color="#5A6591"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <filter id="Shadow_19">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.5"/>
+      <feOffset dx="-2" dy="0" result="offsetblur"/>
+      <feFlood flood-color="#5A6591"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+    <filter id="Shadow_20">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.5"/>
+      <feOffset dx="-2" dy="0" result="offsetblur"/>
+      <feFlood flood-color="#5A6591"/>
+      <feComposite in2="offsetblur" operator="in"/>
+    </filter>
+  </defs>
+  <g id="Layer_2">
+    <g>
+      <g>
+        <g>
+          <path d="M90.753,67.77 L90.753,114.57" fill-opacity="0" stroke="#E9762D" stroke-width="6" stroke-linecap="square" stroke-linejoin="round"/>
+          <g>
+            <path d="M93.753,64.77 L93.753,117.57 L87.753,117.57 L87.753,64.77 L93.753,64.77 z" fill="rgba(0,0,0,1)" clip-path="url(#Clip_1)" filter="url(#Shadow_2)"/>
+            <path d="M93.253,64.77 L93.253,117.57 L93.753,117.07 L87.753,117.07 L88.253,117.57 L88.253,64.77 L87.753,65.27 L93.753,65.27 L93.253,64.77 z M94.253,64.77 C94.253,64.494 94.03,64.27 93.753,64.27 L87.753,64.27 C87.477,64.27 87.253,64.494 87.253,64.77 L87.253,117.57 C87.253,117.846 87.477,118.07 87.753,118.07 L93.753,118.07 C94.03,118.07 94.253,117.846 94.253,117.57 L94.253,64.77 z" fill="rgba(0,0,0,1)" clip-path="url(#Clip_1)" filter="url(#Shadow_2)"/>
+          </g>
+        </g>
+        <g>
+          <path d="M114.153,91.17 L67.353,91.17" fill-opacity="0" stroke="#E9762D" stroke-width="6" stroke-linecap="square" stroke-linejoin="round"/>
+          <g>
+            <path d="M117.153,88.17 L117.153,94.17 L64.353,94.17 L64.353,88.17 L117.153,88.17 z" fill="rgba(0,0,0,1)" clip-path="url(#Clip_3)" filter="url(#Shadow_4)"/>
+            <path d="M116.653,88.17 L116.653,94.17 L117.153,93.67 L64.353,93.67 L64.853,94.17 L64.853,88.17 L64.353,88.67 L117.153,88.67 L116.653,88.17 z M117.653,88.17 C117.653,87.894 117.43,87.67 117.153,87.67 L64.353,87.67 C64.077,87.67 63.853,87.894 63.853,88.17 L63.853,94.17 C63.853,94.446 64.077,94.67 64.353,94.67 L117.153,94.67 C117.43,94.67 117.653,94.446 117.653,94.17 L117.653,88.17 z" fill="rgba(0,0,0,1)" clip-path="url(#Clip_3)" filter="url(#Shadow_4)"/>
+          </g>
+        </g>
+      </g>
+      <g>
+        <g>
+          <path d="M52.856,29.08 L52.856,74.68 L46.856,74.68 L46.856,29.08 L52.856,29.08 z" filter="url(#Shadow_5)" fill="rgba(0,0,0,1)"/>
+          <path d="M49.856,32.08 L49.856,71.68" fill-opacity="0" stroke="#EC912D" stroke-width="6" stroke-linecap="square" stroke-linejoin="round"/>
+        </g>
+        <g>
+          <path d="M72.656,48.88 L72.656,54.88 L27.056,54.88 L27.056,48.88 L72.656,48.88 z" filter="url(#Shadow_6)" fill="rgba(0,0,0,1)"/>
+          <path d="M69.656,51.88 L30.056,51.88" fill-opacity="0" stroke="#EC912D" stroke-width="6" stroke-linecap="square" stroke-linejoin="round"/>
+        </g>
+      </g>
+      <g>
+        <g>
+          <path d="M134.855,104.837 L134.855,150.437 L128.855,150.437 L128.855,104.837 L134.855,104.837 z" filter="url(#Shadow_7)" fill="rgba(0,0,0,1)"/>
+          <path d="M131.855,107.837 L131.855,147.437" fill-opacity="0" stroke="#1C447E" stroke-width="6" stroke-linecap="square" stroke-linejoin="round"/>
+        </g>
+        <g>
+          <path d="M154.655,124.637 L154.655,130.637 L109.055,130.637 L109.055,124.637 L154.655,124.637 z" filter="url(#Shadow_8)" fill="rgba(0,0,0,1)"/>
+          <path d="M151.655,127.637 L112.055,127.637" fill-opacity="0" stroke="#1C447E" stroke-width="6" stroke-linecap="square" stroke-linejoin="round"/>
+        </g>
+      </g>
+      <g>
+        <g>
+          <path d="M52.856,104.837 L52.856,150.437 L46.856,150.437 L46.856,104.837 L52.856,104.837 z" filter="url(#Shadow_9)" fill="rgba(0,0,0,1)"/>
+          <path d="M49.856,107.837 L49.856,147.437" fill-opacity="0" stroke="#C92035" stroke-width="6" stroke-linecap="square" stroke-linejoin="round"/>
+        </g>
+        <g>
+          <path d="M72.656,124.637 L72.656,130.637 L27.056,130.637 L27.056,124.637 L72.656,124.637 z" filter="url(#Shadow_10)" fill="rgba(0,0,0,1)"/>
+          <path d="M69.656,127.637 L30.056,127.637" fill-opacity="0" stroke="#C92035" stroke-width="6" stroke-linecap="square" stroke-linejoin="round"/>
+        </g>
+      </g>
+      <g>
+        <g>
+          <path d="M134.855,29.08 L134.855,74.68 L128.855,74.68 L128.855,29.08 L134.855,29.08 z" filter="url(#Shadow_11)" fill="rgba(0,0,0,1)"/>
+          <path d="M131.855,32.08 L131.855,71.68" fill-opacity="0" stroke="#59879B" stroke-width="6" stroke-linecap="square" stroke-linejoin="round"/>
+        </g>
+        <g>
+          <path d="M154.655,48.88 L154.655,54.88 L109.055,54.88 L109.055,48.88 L154.655,48.88 z" filter="url(#Shadow_12)" fill="rgba(0,0,0,1)"/>
+          <path d="M151.655,51.88 L112.055,51.88" fill-opacity="0" stroke="#59879B" stroke-width="6" stroke-linecap="square" stroke-linejoin="round"/>
+        </g>
+      </g>
+      <g>
+        <g>
+          <path d="M93.253,12.328 L93.253,46.128 L88.253,46.128 L88.253,12.328 L93.253,12.328 z" filter="url(#Shadow_13)" fill="rgba(0,0,0,1)"/>
+          <path d="M90.753,14.828 L90.753,43.628" fill-opacity="0" stroke="#7099A6" stroke-width="5" stroke-linecap="square" stroke-linejoin="round"/>
+        </g>
+        <g>
+          <path d="M107.653,26.728 L107.653,31.728 L73.853,31.728 L73.853,26.728 L107.653,26.728 z" filter="url(#Shadow_14)" fill="rgba(0,0,0,1)"/>
+          <path d="M105.153,29.228 L76.353,29.228" fill-opacity="0" stroke="#7099A6" stroke-width="5" stroke-linecap="square" stroke-linejoin="round"/>
+        </g>
+      </g>
+      <g>
+        <g>
+          <path d="M29.022,76.07 L29.022,106.27 L24.022,106.27 L24.022,76.07 L29.022,76.07 z" filter="url(#Shadow_15)" fill="rgba(0,0,0,1)"/>
+          <path d="M26.522,78.57 L26.522,103.77" fill-opacity="0" stroke="#7099A6" stroke-width="5" stroke-linecap="square" stroke-linejoin="round"/>
+        </g>
+        <g>
+          <path d="M41.622,88.67 L41.622,93.67 L11.422,93.67 L11.422,88.67 L41.622,88.67 z" filter="url(#Shadow_16)" fill="rgba(0,0,0,1)"/>
+          <path d="M39.122,91.17 L13.922,91.17" fill-opacity="0" stroke="#7099A6" stroke-width="5" stroke-linecap="square" stroke-linejoin="round"/>
+        </g>
+      </g>
+      <g>
+        <g>
+          <path d="M93.253,134.872 L93.253,168.672 L88.253,168.672 L88.253,134.872 L93.253,134.872 z" filter="url(#Shadow_17)" fill="rgba(0,0,0,1)"/>
+          <path d="M90.753,137.372 L90.753,166.172" fill-opacity="0" stroke="#5A6591" stroke-width="5" stroke-linecap="square" stroke-linejoin="round"/>
+        </g>
+        <g>
+          <path d="M107.653,149.272 L107.653,154.272 L73.853,154.272 L73.853,149.272 L107.653,149.272 z" filter="url(#Shadow_18)" fill="rgba(0,0,0,1)"/>
+          <path d="M105.153,151.772 L76.353,151.772" fill-opacity="0" stroke="#5A6591" stroke-width="5" stroke-linecap="square" stroke-linejoin="round"/>
+        </g>
+      </g>
+      <g>
+        <g>
+          <path d="M156.978,76.07 L156.978,106.27 L151.978,106.27 L151.978,76.07 L156.978,76.07 z" filter="url(#Shadow_19)" fill="rgba(0,0,0,1)"/>
+          <path d="M154.478,78.57 L154.478,103.77" fill-opacity="0" stroke="#5A6591" stroke-width="5" stroke-linecap="square" stroke-linejoin="round"/>
+        </g>
+        <g>
+          <path d="M169.578,88.67 L169.578,93.67 L139.378,93.67 L139.378,88.67 L169.578,88.67 z" filter="url(#Shadow_20)" fill="rgba(0,0,0,1)"/>
+          <path d="M167.078,91.17 L141.878,91.17" fill-opacity="0" stroke="#5A6591" stroke-width="5" stroke-linecap="square" stroke-linejoin="round"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
 {{ end }}

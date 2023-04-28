@@ -13,25 +13,25 @@
   let labelSelector = `code[tag-id="telemetryStatusLabel-${lang}"]`;
   let disabledTelemetry = window.localStorage.getItem('DisabledTelemetry');
   if ('true' === disabledTelemetry) {
-    $('#disableTelemetry').prop('checked', false);
+    window.document.getElementById('disableTelemetry').checked = false;
     if ('en' == lang) {
-      $(labelSelector).text('Disabled');
+      window.document.querySelector(labelSelector).innerHTML = 'Disabled';
     } else {
-      $(labelSelector).text('Deshabilitada');
+      window.document.querySelector(labelSelector).innerHTML = 'Deshabilitada';
     }
   } else {
-    $('#disableTelemetry').prop('checked', true);
+    window.document.getElementById('disableTelemetry').checked = true;
     if ('en' == lang) {
-      $(labelSelector).text('Enabled');
+      window.document.querySelector(labelSelector).innerHTML = 'Enabled';
     } else {
-      $(labelSelector).text('Habilitada');
+      window.document.querySelector(labelSelector).innerHTML = 'Habilitada';
     }
   }
 
   function handleTelemetrySwitch() {
     let lang = "$lang";
     let labelSelector = `code[tag-id="telemetryStatusLabel-${lang}"]`;
-    let enableTelemetry = $('#disableTelemetry').prop('checked');
+    let enableTelemetry = window.document.getElementById('disableTelemetry').checked;
     if (true === enableTelemetry) {
       window.localStorage.removeItem('DisabledTelemetry');
       BrewingCatsCore.Config.TelemetryEnabled = true;
@@ -46,9 +46,9 @@
       );
 
       if ('en' == lang) {
-        $(labelSelector).text('Enabled');
+        window.document.querySelector(labelSelector).innerHTML = 'Enabled';
       } else {
-        $(labelSelector).text('Habilitada');
+        window.document.querySelector(labelSelector).innerHTML = 'Habilitada';
       }
     } else {
       BrewingCatsCore.Logger.traceInfo(
@@ -64,9 +64,9 @@
       window.localStorage.setItem('DisabledTelemetry', 'true');
       BrewingCatsCore.Config.TelemetryEnabled = false;
       if ('en' == lang) {
-        $(labelSelector).text('Disabled');
+        window.document.querySelector(labelSelector).innerHTML = 'Disabled';
       } else {
-        $(labelSelector).text('Deshabilitada');
+        window.document.querySelector(labelSelector).innerHTML = 'Deshabilitada';
       }
     }
   }

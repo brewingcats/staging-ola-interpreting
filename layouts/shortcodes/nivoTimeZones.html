@@ -1,0 +1,72 @@
+{{ $name := .Get "name"}}
+
+<div id="{{ $name }}"></div>
+<link href="/style/nivo/nivo-style.css#{{ .Site.Params.siteVersion }}" rel="stylesheet">
+<script src="/javascript/nivo/nivo.js#{{ .Site.Params.siteVersion }}"></script>
+<script>
+  (() => {
+    let monthIds = [
+      window.BrewingCatsCore.TelemetryReader.getNthId(0),
+    ];
+
+    window.BrewingCatsCore.TelemetryReader.queryTelemetryData(
+      '{{ $name }}',
+      monthIds,
+      (data) => {
+        return data.filter(item => item.tagId === 'tagId_1');
+      },
+      (data) => {
+        let timeZones = {};
+        data.forEach(d => {
+          let zone = d.timezone;
+          if (timeZones[zone] === undefined) {
+            timeZones[zone] = 1;
+          } else {
+            timeZones[zone]++;
+          }
+        });
+
+        let timeZoneData = [];
+        for (let tz in timeZones) {
+          timeZoneData.push({
+            zone: tz,
+            count: timeZones[tz]
+          });
+        }
+
+        timeZoneData.sort((a, b) => {
+          if (a.count < b.count) { return 1; }
+          if (a.count > b.count) { return -1; }
+          return 0;
+        });
+
+        let chartData = [];
+        let countriesControl = [];
+        timeZoneData.forEach(tz => {
+          let countries = window.BrewingCatsCore.TimeZones.getCountriesWithTimeZone(tz.zone);
+          countries.forEach(c => {
+            if (!countriesControl.includes(c)) { // Countries with multiple time zones
+              chartData.push({
+                id: c,
+                value: tz.count
+              });
+
+              countriesControl.push(c);
+            }
+          });
+        });
+
+        let meta = window.BrewingCatsCore.TelemetryChartConfig.ChoroplethMeta;
+        meta.domain = [0, timeZoneData[0].count];
+        meta.features = window.BrewingCatsCore.TelemetryChartConfig.ChoroplethFeatures['features'];
+
+        window.BrewingCatsCore.NivoController.createNivoChart(
+          '{{ $name }}',
+          'choropleth',
+          chartData,
+          meta
+        );
+      }
+    );
+  })();
+</script>

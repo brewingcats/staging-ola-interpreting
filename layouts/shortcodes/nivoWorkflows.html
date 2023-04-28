@@ -1,0 +1,104 @@
+{{ $name := .Get "name"}}
+
+<div id="{{ $name }}"></div>
+<link href="/style/nivo/nivo-style.css#{{ .Site.Params.siteVersion }}" rel="stylesheet">
+<script src="/javascript/nivo/nivo.js#{{ .Site.Params.siteVersion }}"></script>
+<script>
+  (() => {
+    let monthIds = [
+      window.BrewingCatsCore.TelemetryReader.getNthId(0),
+      window.BrewingCatsCore.TelemetryReader.getNthId(1),
+      window.BrewingCatsCore.TelemetryReader.getNthId(2),
+    ];
+
+    window.BrewingCatsCore.TelemetryReader.queryTelemetryData(
+      '{{ $name }}',
+      monthIds,
+      (data) => {
+        return data.filter(item => item.tagId === 'tagId_1');
+      },
+      (data) => {
+        let sessions = [];
+        
+        data.forEach((i) => {
+          if (!sessions.includes(i.SessionId)) {
+            sessions.push(i.SessionId);
+          }
+        });
+
+        let uris = [];
+        let linkTmp = {}
+        sessions.forEach(s => {
+          let sessionData = data.filter(d => d.SessionId === s);
+          if (sessionData.length !== undefined && sessionData.length !== 1) {
+            sessionData.sort((a, b) => {
+              let aTime = new Date(a.timestamp);
+              let bTime = new Date(b.timestamp);
+              if (aTime > bTime) return 1;
+              if (aTime < bTime) return -1;
+              return 0;
+            });
+  
+            sessionData.forEach((sess) => {
+              let path = new URL(sess.url).pathname;
+              if (!uris.includes(path)) {
+                uris.push(path);
+              }
+            });
+
+            for (let idx = 0; idx < sessionData.length; idx++) {
+              if (idx + 1 < sessionData.length) {
+                let curPath = new URL(sessionData[idx].url).pathname;
+                let nextPath = new URL(sessionData[idx + 1].url).pathname;
+                if (curPath !== nextPath) {
+                  let toFrom = `${curPath}=>${nextPath}`;
+                  let fromTo = `${nextPath}=>${curPath}`;
+                  if (linkTmp[toFrom] === undefined && linkTmp[fromTo] === undefined) {
+                    linkTmp[toFrom] = 1;
+                  } else if (linkTmp[toFrom] !== undefined && linkTmp[fromTo] === undefined) {
+                    linkTmp[toFrom]++;
+                  } else if (linkTmp[toFrom] === undefined && linkTmp[fromTo] !== undefined) {
+                    linkTmp[fromTo]++;
+                  }
+                }
+              }
+            }
+          }
+        });
+
+        let linkData = [];
+        for (let link in linkTmp) {
+          let source = link.split('=>')[0];
+          let target = link.split('=>')[1];
+
+          linkData.push({
+            source: (source < target)? source : target,
+            target: (source > target)? source : target,
+            value: linkTmp[link]
+          });
+        }
+
+        // Creating nodes
+        let nodes = [];
+        uris.forEach(p => {
+          nodes.push({
+            id: p,
+            nodeColor: window.BrewingCatsCore.Util.getRandomHsl()
+          });
+        });
+
+        let chartData = {
+          nodes: nodes,
+          links: linkData
+        };
+
+        window.BrewingCatsCore.NivoController.createNivoChart(
+          '{{ $name }}',
+          'sankey',
+          chartData,
+          window.BrewingCatsCore.TelemetryChartConfig.SankeyMeta
+        );
+      }
+    );
+  })();
+</script>

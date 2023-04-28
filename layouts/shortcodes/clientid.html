@@ -1,4 +1,5 @@
 <code tag-id="ClientId"></code>
 <script>
-  $('code[tag-id="ClientId"]').html(window.localStorage.getItem('ClientId'));
+  window.document.querySelector('code[tag-id="ClientId"]')
+    .innerHTML = window.localStorage.getItem('ClientId');
 </script>

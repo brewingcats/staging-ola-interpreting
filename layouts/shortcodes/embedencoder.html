@@ -1,0 +1,46 @@
+{{ $lang := .Page.Params.lang }}
+{{ $imgUrl := cond (eq $lang "en") 
+  "Image URL:" 
+  (cond (eq $lang "es") 
+    "URL de la imágen" 
+  "Image URL:") }}
+
+{{ $pasteHere := cond (eq $lang "en") 
+  "Paste image source here" 
+  (cond (eq $lang "es") 
+    "Pegue la dirección de la imágen" 
+  "Paste image source here") }}
+
+{{ $encode := cond (eq $lang "en") 
+  "Encode" 
+  (cond (eq $lang "es") 
+    "Codificar" 
+  "Encode") }}
+
+{{ $tryUrl := cond (eq $lang "en")
+  "Try Encoded URL"
+  (cond (eq $lang "es") 
+    "Abrir URL Codificada"
+  "Try Encoded URL") }}
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="embed-code-label" >
+      {{ $imgUrl }}
+    </span>
+  </div>
+  <input type="text" class="form-control" id="embed-code-input" aria-describedby="embed-code-label"
+    placeholder='{{ $pasteHere }}'>
+  <div class="input-group-append">
+    <button class="btn btn-primary" type="button" 
+      onclick="window.BrewingCatsCore.EmbedControl.CreateEmbedUri()" 
+      id="encodeButton"
+    data-bs-toggle="tooltip" data-bs-placement="right" title="Encode" data-bs-animation="true" data-trigger="manual">
+      {{ $encode }}
+    </button>
+  </div>
+</div>
+<div id="embeddedImgLink">
+  {{ partial "link.html" (dict "color" $.Page.Site.Params.theme_color "src" "#" "label" $tryUrl) }}
+</div>
+<code id="embeddedImg"></code>

@@ -51,21 +51,37 @@ Data schema:
   (() => {
     let captionUrl = [];
     let captions = [];
+    let url = "";
     {{ range (index $data $lang) }}
     captions.push("{{ .caption }}");
-    captionUrl.push("{{ .caption_link }}")
+    url = "{{ .caption_link }}";
+    if (url === "") {
+      url = "<none>";
+    }
+
+    captionUrl.push(url);
     {{ end }}
-    let captionHtml = `<a href="${captionUrl[0]}" target="_blank" onclick="BrewingCatsCore.LinkActions.openLink('${captionUrl[0]}', '${captions[0]}')" 
+    url = captionUrl[0];
+    let captionHtml = `<a href="${url}" target="_blank" onclick="BrewingCatsCore.LinkActions.openLink('${url}', '${captions[0]}')" 
     style="color: rgb(34, 34, 34); box-shadow: rgb({{ $.Page.Site.Params.theme_color }}) 0px -4px 0px inset; text-decoration: none; " 
     onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
     onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)">${captions[0]}</a>`;
+    if (url === "<none>") {
+      captionHtml = `<p style="text-align: center; font-style: italic;">${captions[0]}</p>`;
+    }
+    
     let carouselLabel = document.getElementById('carousel-label-{{ $.Params.data }}');
     carouselLabel.innerHTML = captionHtml;
     document.getElementById('{{ $.Params.data }}').addEventListener('slide.bs.carousel', (e) => {
-      carouselLabel.innerHTML = `<a href="${captionUrl[e.to]}" target="_blank" onclick="BrewingCatsCore.LinkActions.openLink('${captionUrl[e.to]}', '${captions[e.to]}')" 
+      let innerHTML = `<a href="${captionUrl[e.to]}" target="_blank" onclick="BrewingCatsCore.LinkActions.openLink('${captionUrl[e.to]}', '${captions[e.to]}')" 
       style="color: rgb(34, 34, 34); box-shadow: rgb({{ $.Page.Site.Params.theme_color }}) 0px -4px 0px inset; text-decoration: none; " 
       onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
       onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)">${captions[e.to]}</a>`;
+      if (captionUrl[e.to] === "<none>") {
+        innerHTML = `<p style="text-align: center; font-style: italic;">${captions[e.to]}</p>`;
+      }
+
+      carouselLabel.innerHTML = innerHTML;
     });
   })();
 </script>

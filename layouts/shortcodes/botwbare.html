@@ -1,10 +1,10 @@
 <div tagId="transResult-{{.Get 0}}" class="text-center"></div>
 
 <script type="text/javascript">
-  $(document).ready(() => {
+  window.addEventListener('load', () => {
     // Parse query url
-    let transArea = $('[tagId="transResult-{{.Get 0}}"]');
-    transArea.html('');
+    let transArea = window.document.querySelector('[tagId="transResult-{{.Get 0}}"]');
+    transArea.innerHTML = '';
     let urlParams = new URLSearchParams(window.location.search);
     let text = '';
     text = urlParams.get('text');
@@ -67,17 +67,16 @@
       }
     }
 
-    transArea.html(imgs);
+    transArea.innerHTML = imgs;
     BrewingCatsCore.Logger.traceInfo(
       `BOTWBare Component`,
       'component.botwbare',
       'tagId_b',
       'ComponentSetup',
       {
-        'component': 'BOTWBare',
-        'style': ''
+        'component': 'BOTWBare'
       }
     );
-  });
+  }, false);
 
 </script>

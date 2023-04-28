@@ -1,0 +1,2 @@
+{{ $color := cond (eq (.Get 1) "") $.Page.Site.Params.theme_color (.Get 1) }}
+<span style="color: rgb({{ $color }});">{{ .Get 0 }}</span>

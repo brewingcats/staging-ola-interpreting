@@ -1,0 +1,15 @@
+{{ $name := .Get "name"}}
+{{ $prop := .Get "prop"}}
+{{ $filter := .Get "filter"}}
+
+<div id="{{ $name }}"></div>
+<link href="/style/nivo/nivo-style.css#{{ .Site.Params.siteVersion }}" rel="stylesheet">
+<script src="/javascript/nivo/nivo.js#{{ .Site.Params.siteVersion }}"></script>
+<script>
+  (() => {
+    window.BrewingCatsCore.NivoController.createUsageLine(
+      '{{ $name }}',
+      '{{ $prop }}'
+    );
+  })();
+</script>

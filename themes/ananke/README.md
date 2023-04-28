@@ -1,4 +1,4 @@
-# Ananke, A theme for [Hugo](http://gohugo.io/), a framework for building websites.
+# Ananke, A theme for [Hugo](https://gohugo.io/), a framework for building websites.
 
 The intent of this theme is to provide a solid starting place for Hugo sites with basic features and include best practices for performance, accessibility, and rapid development.
 
@@ -40,10 +40,10 @@ Also includes examples of Hugo Features or Functions:
 - `len`
 - Conditionals
 - `ge` (greater than or equal to)
-- `.Site.Params.mainSections` to avoid hard-coding "blog," etc. [[release note](https://github.com/spf13/hugo/blob/66ec6305f6cb450ddf9c489854146bac02f7dca1/docs/content/meta/release-notes.md#enhancements)]
+- `.Site.Params.mainSections` to avoid hard-coding "blog," etc. [[release note](https://github.com/gohugoio/hugo/blob/66ec6305f6cb450ddf9c489854146bac02f7dca1/docs/content/meta/release-notes.md#enhancements)]
 
 
-This theme uses the "Tachyons" CSS library. This will allow you to manipulate the design of the theme by changing class names in HTML without touching the original CSS files. For more information see the [Tachyons website](http://tachyons.io/).
+This theme uses the "Tachyons" CSS library. This will allow you to manipulate the design of the theme by changing class names in HTML without touching the original CSS files. For more information see the [Tachyons website](https://tachyons.io/).
 
 
 
@@ -113,7 +113,7 @@ If user is using [Page Resources](https://gohugo.io/content-management/page-reso
 #### Other hero settings
 If you would like to hide the header text on the featured image on a page, set `omit_header_text` to `true`. See `exampleSite/content/contact.md` for an example.
 
-You don't need an image though. The default background color is black, but you can change the color, by changing the default color class in the config.toml file. Choose a background color from any on the [Tachyons](http://tachyons.io/docs/themes/skins/) library site, and preface it with "bg-"
+You don't need an image though. The default background color is black, but you can change the color, by changing the default color class in the config.toml file. Choose a background color from any on the [Tachyons](https://tachyons.io/docs/themes/skins/) library site, and preface it with "bg-"
 
 example: `background_color_class = "bg-blue"` or `background_color_class = "bg-gray"`
 
@@ -127,6 +127,31 @@ This theme includes a shortcode for a contact form that you can add to any page 
 {{< form-contact action="https://formspree.io/your@email.com" >}}
 ```
 
+### Read more link
+
+The homepage and other areas of the site use a `read more` link on the element. You can customize the copy of this link to make it more descriptive with the parameter `read_more_copy` available as a site and front matter parameter.
+
+```
+# config.yaml
+# Globally for all pages:
+params:
+  read_more_copy: Read more about this entry
+# Just for french
+languages:
+  fr:
+    name: Français
+    weight: 2
+    params:
+       read_more_copy: En savoir plus à ce sujet
+```
+Using front matter and cascade, this can be customized for a whole section, or just for one page.
+
+```
+# content/posts/tower-bridge-london.md
+  title: The Tower Bridge of London
+  read_more_copy: Read more about this bridge
+```
+
 ### Social Follow + Share
 
 The theme automatically adds "Follow" link icons to the header and footer and "Share" link icons to pages unless `disable_share` parameter is set to true either on the site level (site params) or page level (front matter). Each built-in services sports a label, an icon and a color.
@@ -135,7 +160,7 @@ In order to register a service to be used, user must add an `ananke_socials` par
 - name*: It matches the built-in service reference (Ex: twitter, github)
 - url*: The url of the handle's profile on the service (Ex: https://twitter.com/theNewDynamic, https://github.com/
 theNewDynamic)
-
+- rel: (default: `noopener`) Controls the `rel` attribute of the "follow" link. Useful for Mastodon verification which requires a `rel="me"` on the link.
 ```yaml
 params:
   ananke_socials:
@@ -143,6 +168,9 @@ params:
     url: https://twitter.com/theNewDynamic
   - name: github
     url: https://github.com/theNewDynamic
+  - name: mastodon
+    url: https://social.example.com/@username
+    rel: me noopener
 ```
 
 If user needs to overwrite default `color` and `label` of the service, they simply need to append the following to the entry:
@@ -235,7 +263,7 @@ _n.b. in future versions we will likely separate the typeface and other body cla
 
 Ananke stylesheet is built with Hugo Pipes's [Asset Bundling](https://gohugo.io/hugo-pipes/bundling/#readout) alone to maximize compatibiliy. The theme simply bundles its several files into one minified and fingerprinted (in production) CSS file.
 
-Ananke uses [Tachyon.io](http://tachyons.io/) utility class library.
+Ananke uses [Tachyon.io](https://tachyons.io/) utility class library.
 
 #### Custom CSS
 
@@ -291,7 +319,7 @@ Set the `text_color` param in the `config.toml` file.
 Individual Page (prioritized over global):
 Set the `text_color` param in a page's markdown file front matter.
 
-note: The value of `text_color` must be a valid tachyons color class. Alist can be found [here](http://tachyons.io/docs/themes/skins/).
+note: The value of `text_color` must be a valid tachyons color class. A list can be found [here](https://tachyons.io/docs/themes/skins/).
 
 
 ### Localize date format

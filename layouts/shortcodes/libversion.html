@@ -35,8 +35,8 @@
       <td class="table-dark">
         <div class="highlight">
           <code class="language-bash" data-lang="bash">
-            <span style="display:flex;">
-              {{ .Site.Params.siteRelease }}
+            <span class="BCCore-Update-SiteVersion" style="display:flex;">
+              @@@
             </span>
           </code>
         </div>
@@ -48,6 +48,6 @@
 
 <script>
   (() => {
-    document.querySelector(".a{{ $id }}").innerHTML = `${BrewingCatsCore.Config.Version}`;
+    document.querySelector(".a{{ $id }}").innerHTML = `${BrewingCatsCore.Config.Version}.${BrewingCatsCore.Config.Build}`;
   })();
 </script>

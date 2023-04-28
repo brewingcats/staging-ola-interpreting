@@ -1,7 +1,42 @@
 {{ $src := cond (.IsNamedParams) (.Get "src" ) (.Get 0 ) }}
 {{ $label := cond (.IsNamedParams) (.Get "label" ) (.Get 1 ) }}
+{{ $basecolor := .Get 2 | default "ThemeColor" }}
+{{ $hovercolor := .Get 3 | default "LinkHoverColor" }}
 
-<a href="{{ $src }}" target="_blank" onclick="BrewingCatsCore.LinkActions.openLink('{{$src}}', '{{$label}}')" 
-style="color: rgb(34, 34, 34); box-shadow: rgb({{ $.Page.Site.Params.theme_color }}) 0px -4px 0px inset; text-decoration: none; " 
-onMouseOver="BrewingCatsCore.LinkActions.mouseover(this)"
-onMouseOut="BrewingCatsCore.LinkActions.mouseout(this)">{{ $label }}</a>
+<a href="{{ $src }}" target="_blank" class="{{ $src | base64Encode }}"
+onclick="BrewingCatsCore.LinkActions.openLink('{{$src}}', '{{$label}}')" 
+style="color: rgb(34, 34, 34); text-decoration: none; " 
+onMouseOver="BrewingCatsCore.LinkActions.mouseover(this, '{{ $src | base64Encode }}Hover')"
+onMouseOut="BrewingCatsCore.LinkActions.mouseout(this, '{{ $src | base64Encode }}Base')"
+>{{ $label }}</a>
+
+<script>
+  (() => {
+    let items = document.getElementsByClassName("{{ $src | base64Encode }}");
+    let baseColor = "{{ $basecolor }}";
+    // Setup initial color
+    for (let i = 0; i < items.length; i++) {
+      let boxShadow = `rgb(${window.BrewingCatsCore.Config.ThemeColor}) 0px -4px 0px inset`;
+      if (baseColor !== 'ThemeColor') {
+        boxShadow = `rgb(${baseColor}) 0px -4px 0px inset`;
+      }
+
+      items[i].style.boxShadow = boxShadow;
+    }
+
+    if (baseColor !== 'ThemeColor') {
+      window.BrewingCatsCore.Config.ClickCustom["{{ $src | base64Encode }}Base"] = baseColor;
+    } else {
+      window.BrewingCatsCore.Config.ClickCustom["{{ $src | base64Encode }}Base"] = 
+        window.BrewingCatsCore.Config.ThemeColor;
+    }
+
+    let hoverColor = "{{ $hovercolor }}";
+    if (hoverColor !== 'LinkHoverColor') {
+      window.BrewingCatsCore.Config.ClickCustom["{{ $src | base64Encode }}Hover"] = hoverColor;
+    } else {
+      window.BrewingCatsCore.Config.ClickCustom["{{ $src | base64Encode }}Hover"] = 
+        window.BrewingCatsCore.Config.LinkHoverColor;
+    }
+  })();
+</script>
